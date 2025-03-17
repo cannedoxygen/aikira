@@ -57,6 +57,9 @@ function animateProgressBars() {
     progressBars.forEach(bar => {
         observer.observe(bar);
     });
+
+    // Additionally, specifically animate the roadmap item progress bars
+    animateRoadmapItems();
 }
 
 // Find the parent distribution item element
@@ -116,6 +119,44 @@ function extractPercentageValue(parentItem) {
     
     // Default to zero if we couldn't find a percentage
     return '0%';
+}
+
+// Animate roadmap items with proper visibility
+function animateRoadmapItems() {
+    const roadmapItems = document.querySelectorAll('.roadmap-item');
+    
+    if (roadmapItems.length === 0) {
+        console.log("No roadmap items found");
+        return;
+    }
+    
+    console.log(`Found ${roadmapItems.length} roadmap items to animate`);
+    
+    // Create an intersection observer for roadmap items
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                const item = entry.target;
+                
+                // Add visible class with staggered delay
+                setTimeout(() => {
+                    item.classList.add('visible');
+                    item.style.opacity = 1;
+                    item.style.transform = 'translateY(0)';
+                }, 200 * index);
+                
+                observer.unobserve(item);
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    // Set initial state and start observing
+    roadmapItems.forEach(item => {
+        item.style.opacity = 0;
+        item.style.transform = 'translateY(30px)';
+        item.style.transition = 'opacity 0.6s, transform 0.6s';
+        observer.observe(item);
+    });
 }
 
 // Reset progress bars to zero (for reanimation)
@@ -204,6 +245,63 @@ function createProgressBar(parentSelector, value, color = null, animated = true)
     return progressBar;
 }
 
+// Ensure distribution progress bars are populated with the correct percentages
+function populateDistributionPercentages() {
+    const distributionItems = document.querySelectorAll('.distribution-item');
+    
+    distributionItems.forEach(item => {
+        const titleSpans = item.querySelectorAll('.distribution-title span');
+        if (titleSpans.length >= 2) {
+            const percentText = titleSpans[1].textContent.trim();
+            const progressFill = item.querySelector('.progress-fill');
+            
+            if (progressFill) {
+                setTimeout(() => {
+                    progressFill.style.width = percentText;
+                }, 500);
+            }
+        }
+    });
+}
+
+// Initialize roadmap section specifically
+function initializeRoadmap() {
+    console.log("Initializing roadmap section");
+    
+    // Make sure the roadmap section is visible
+    const roadmapSection = document.getElementById('roadmap');
+    if (roadmapSection) {
+        roadmapSection.style.display = 'block';
+    }
+    
+    // Animate the roadmap items
+    animateRoadmapItems();
+    
+    // Attach scroll event to ensure roadmap is visible
+    window.addEventListener('scroll', () => {
+        if (isElementInViewport(roadmapSection)) {
+            animateRoadmapItems();
+        }
+    });
+}
+
+// Helper function to check if element is in viewport
+function isElementInViewport(el) {
+    if (!el) return false;
+    
+    const rect = el.getBoundingClientRect();
+    return (
+        rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.bottom >= 0
+    );
+}
+
+// On DOM Content Loaded, ensure roadmap is properly initialized
+document.addEventListener('DOMContentLoaded', function() {
+    populateDistributionPercentages();
+    initializeRoadmap();
+});
+
 // Export functions for use in main.js
 export {
     animateProgressBars,
@@ -211,5 +309,6 @@ export {
     setProgressBarValue,
     createStripedEffect,
     animateStripedEffect,
-    createProgressBar
+    createProgressBar,
+    initializeRoadmap
 };

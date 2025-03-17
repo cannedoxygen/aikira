@@ -14,6 +14,117 @@
     
     <!-- Main Stylesheet - this imports all CSS modules -->
     <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Fix for roadmap styling -->
+    <style>
+        /* Ensure roadmap section is visible */
+        #roadmap {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            position: relative !important;
+            padding-top: 100px;
+            padding-bottom: 80px;
+        }
+        
+        /* Make the roadmap container visible */
+        .roadmap {
+            position: relative;
+            margin-top: 60px;
+            display: block !important;
+        }
+        
+        /* Ensure the timeline line is visible */
+        .roadmap::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            background: linear-gradient(to bottom, var(--blue-pastel), rgba(167, 216, 247, 0.2));
+            z-index: 1;
+        }
+        
+        /* Make roadmap items visible */
+        .roadmap-item {
+            display: flex;
+            margin-bottom: 80px;
+            position: relative;
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+        
+        /* Fix roadmap dots */
+        .roadmap-dot {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            z-index: 2;
+            opacity: 1 !important;
+        }
+        
+        /* Fix roadmap content */
+        .roadmap-content {
+            width: 45%;
+            padding: 30px;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius-lg);
+            border: 1px solid rgba(167, 216, 247, 0.3);
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+            z-index: 3;
+            opacity: 1 !important;
+        }
+        
+        /* Fix alternate sides for roadmap items */
+        .roadmap-item:nth-child(odd) {
+            justify-content: flex-end;
+        }
+        
+        .roadmap-item:nth-child(odd) .roadmap-content {
+            margin-right: 60px;
+            text-align: right;
+        }
+        
+        .roadmap-item:nth-child(even) .roadmap-content {
+            margin-left: 60px;
+            text-align: left;
+        }
+        
+        /* Fix for mobile view */
+        @media (max-width: 992px) {
+            .roadmap::before {
+                left: 20px;
+            }
+            
+            .roadmap-item,
+            .roadmap-item:nth-child(odd) {
+                justify-content: flex-start;
+            }
+            
+            .roadmap-item:nth-child(odd) .roadmap-content {
+                margin-right: 0;
+                margin-left: 60px;
+                text-align: left;
+            }
+            
+            .roadmap-dot {
+                left: 20px;
+            }
+            
+            .roadmap-content {
+                width: 80%;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Circuit Board Background -->
@@ -541,87 +652,117 @@
                     <p>While the AI makes final decisions, community input remains essential for training, guidance, and domain expertise. Aikira aims to find the optimal balance between human input and AI autonomy.</p>
                 </div>
             </div>
-            
-            <!-- FOOTER -->
-            <footer>
-                <div class="container">
-                    <div class="footer-content">
-                        <div class="footer-column">
-                            <h3>Aikira</h3>
-                            <ul>
-                                <li><a href="#tokenomics">Tokenomics</a></li>
-                                <li><a href="#concept">Concept</a></li>
-                                <li><a href="#airdrop">Airdrop</a></li>
-                                <li><a href="#roadmap">Roadmap</a></li>
-                            </ul>
-                        </div>
-                        
-                        <div class="footer-column">
-                            <h3>Resources</h3>
-                            <ul>
-                                <li><a href="#">Whitepaper</a></li>
-                                <li><a href="#">Documentation</a></li>
-                                <li><a href="#">GitHub</a></li>
-                                <li><a href="#">Developers</a></li>
-                            </ul>
-                        </div>
-                        
-                        <div class="footer-column">
-                            <h3>Community</h3>
-                            <ul>
-                                <li><a href="#">Discord</a></li>
-                                <li><a href="#">Telegram</a></li>
-                                <li><a href="#">Twitter</a></li>
-                                <li><a href="#">Medium</a></li>
-                            </ul>
-                        </div>
-                        
-                        <div class="footer-column">
-                            <h3>Connect</h3>
-                            <div class="social-links">
-                                <a href="#" class="social-link">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
-                                    </svg>
-                                </a>
-                                <a href="#" class="social-link">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-                                    </svg>
-                                </a>
-                                <a href="#" class="social-link">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.19 12.19 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032c.001.014.01.028.021.037a13.276 13.276 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.01-.059.051.051 0 0 0-.018-.011 8.875 8.875 0 0 1-1.248-.595.05.05 0 0 1-.02-.066.051.051 0 0 1 .015-.019c.084-.063.168-.129.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.594.05.05 0 0 0-.03.03.052.052 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02.049.049 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.034.034 0 0 0-.02-.019Zm-8.198 7.307c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612Zm5.316 0c-.788 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612Z"/>
-                                    </svg>
-                                </a>
-                                <a href="#" class="social-link">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path d="M8 0a8 8 0 0 0-2.915 15.452c-.07-.633-.134-1.606.027-2.297.146-.625.938-3.977.938-3.977s-.239-.479-.239-1.187c0-1.113.645-1.943 1.448-1.943.682 0 1.012.512 1.012 1.127 0 .686-.437 1.712-.663 2.663-.188.796.4 1.446 1.185 1.446 1.422 0 2.515-1.5 2.515-3.664 0-1.915-1.377-3.254-3.342-3.254-2.276 0-3.612 1.707-3.612 3.471 0 .688.265 1.425.595 1.826a.24.24 0 0 1 .056.23c-.061.252-.196.796-.222.907-.035.146-.116.177-.268.107-1-.465-1.624-1.926-1.624-3.1 0-2.523 1.834-4.84 5.286-4.84 2.775 0 4.932 1.977 4.932 4.62 0 2.757-1.739 4.976-4.151 4.976-.811 0-1.573-.421-1.834-.919l-.498 1.902c-.181.695-.669 1.566-.995 2.097A8 8 0 1 0 8 0z"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="footer-bottom">
-                        <p>© 2025 Aikira ($AIKIRA) - Base's #1 100% AI-Governed DAO</p>
-                        <p>Launched on <a href="http://aikira.io">aikira.io</a></p>
-                        <p class="disclaimer">
-                            Aikira ($AIKIRA) tokens have no intrinsic value and are not investments. The tokens may experience extreme volatility or complete loss of value. Users must conduct their own research before participating. Only use funds you're comfortable losing.
-                        </p>
+        </div>
+    </section>
+    
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Aikira</h3>
+                    <ul>
+                        <li><a href="#tokenomics">Tokenomics</a></li>
+                        <li><a href="#concept">Concept</a></li>
+                        <li><a href="#airdrop">Airdrop</a></li>
+                        <li><a href="#roadmap">Roadmap</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Whitepaper</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">Developers</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Community</h3>
+                    <ul>
+                        <li><a href="#">Discord</a></li>
+                        <li><a href="#">Telegram</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Medium</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Connect</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.19 12.19 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032c.001.014.01.028.021.037a13.276 13.276 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.01-.059.051.051 0 0 0-.018-.011 8.875 8.875 0 0 1-1.248-.595.05.05 0 0 1-.02-.066.051.051 0 0 1 .015-.019c.084-.063.168-.129.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.594.05.05 0 0 0-.03.03.052.052 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02.049.049 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.034.034 0 0 0-.02-.019Zm-8.198 7.307c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612Zm5.316 0c-.788 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612Z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M8 0a8 8 0 0 0-2.915 15.452c-.07-.633-.134-1.606.027-2.297.146-.625.938-3.977.938-3.977s-.239-.479-.239-1.187c0-1.113.645-1.943 1.448-1.943.682 0 1.012.512 1.012 1.127 0 .686-.437 1.712-.663 2.663-.188.796.4 1.446 1.185 1.446 1.422 0 2.515-1.5 2.515-3.664 0-1.915-1.377-3.254-3.342-3.254-2.276 0-3.612 1.707-3.612 3.471 0 .688.265 1.425.595 1.826a.24.24 0 0 1 .056.23c-.061.252-.196.796-.222.907-.035.146-.116.177-.268.107-1-.465-1.624-1.926-1.624-3.1 0-2.523 1.834-4.84 5.286-4.84 2.775 0 4.932 1.977 4.932 4.62 0 2.757-1.739 4.976-4.151 4.976-.811 0-1.573-.421-1.834-.919l-.498 1.902c-.181.695-.669 1.566-.995 2.097A8 8 0 1 0 8 0z"/>
+                            </svg>
+                        </a>
                     </div>
                 </div>
-            </footer>
+            </div>
             
-            <!-- Scroll to Top Button -->
-            <a href="#" class="scroll-top">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                </svg>
-            </a>
-            
-            <!-- JavaScript Imports -->
-            <!-- Main JS file imports all modules -->
-            <script src="js/main.js"></script>
-        </body>
-        </html>
+            <div class="footer-bottom">
+                <p>© 2025 Aikira ($AIKIRA) - Base's #1 100% AI-Governed DAO</p>
+                <p>Launched on <a href="http://aikira.io">aikira.io</a></p>
+                <p class="disclaimer">
+                    Aikira ($AIKIRA) tokens have no intrinsic value and are not investments. The tokens may experience extreme volatility or complete loss of value. Users must conduct their own research before participating. Only use funds you're comfortable losing.
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scroll to Top Button -->
+    <a href="#" class="scroll-top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </a>
+    
+    <!-- JavaScript Imports -->
+    <!-- Ensure we're using type="module" for ES module imports -->
+    <script type="module" src="js/main.js"></script>
+    
+    <!-- Roadmap initialization script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Force roadmap to display properly
+            setTimeout(function() {
+                // Initialize progress bars for tokenomics
+                const distributionItems = document.querySelectorAll('.distribution-item');
+                distributionItems.forEach(item => {
+                    const titleSpans = item.querySelectorAll('.distribution-title span');
+                    if (titleSpans.length >= 2) {
+                        const percentText = titleSpans[1].textContent.trim();
+                        const progressFill = item.querySelector('.progress-fill');
+                        if (progressFill) {
+                            progressFill.style.width = percentText;
+                        }
+                    }
+                });
+                
+                // Force roadmap items visibility
+                const roadmapItems = document.querySelectorAll('.roadmap-item');
+                roadmapItems.forEach(item => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                });
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

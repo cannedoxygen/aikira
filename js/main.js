@@ -26,6 +26,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize all modules
     initializeAll();
+    
+    // Add specific fix for roadmap section
+    ensureRoadmapVisible();
 });
 
 // Main initialization function that calls all module initializers
@@ -137,6 +140,46 @@ function initializeScrollEffects() {
     if (typeof handleHeaderScroll === 'function') {
         handleHeaderScroll();
     }
+}
+
+// Ensure the roadmap section is visible
+function ensureRoadmapVisible() {
+    // Wait a short time to ensure DOM is fully loaded
+    setTimeout(function() {
+        console.log('Ensuring roadmap section visibility');
+        const roadmapSection = document.getElementById('roadmap');
+        
+        if (roadmapSection) {
+            // Make sure roadmap section is displayed
+            roadmapSection.style.display = 'block';
+            roadmapSection.style.visibility = 'visible';
+            roadmapSection.style.opacity = '1';
+            
+            // Force progress bars to show percentages
+            const distributionItems = document.querySelectorAll('.distribution-item');
+            distributionItems.forEach(item => {
+                const titleSpans = item.querySelectorAll('.distribution-title span');
+                if (titleSpans.length >= 2) {
+                    const percentText = titleSpans[1].textContent.trim();
+                    const progressFill = item.querySelector('.progress-fill');
+                    
+                    if (progressFill) {
+                        progressFill.style.width = percentText;
+                    }
+                }
+            });
+            
+            // Make roadmap items visible
+            const roadmapItems = document.querySelectorAll('.roadmap-item');
+            roadmapItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('visible');
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, 200 * index);
+            });
+        }
+    }, 500);
 }
 
 // Setup smooth scrolling for anchor links
