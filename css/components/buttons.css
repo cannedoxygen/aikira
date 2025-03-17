@@ -1,0 +1,255 @@
+/* 
+* Aikira ($AIKIRA) - Button Styles
+* Base's #1 100% AI-Governed DAO
+*/
+
+/* Base Button Styles */
+button,
+.button {
+    font-family: var(--body-font);
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+button:focus,
+.button:focus {
+    outline: none;
+}
+
+/* Primary Button */
+.primary-button {
+    background: var(--gradient-primary);
+    color: #ffffff;
+    border: none;
+    padding: 14px 28px;
+    border-radius: var(--border-radius-md);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.primary-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.7s;
+    z-index: -1;
+}
+
+.primary-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 14px rgba(194, 163, 255, 0.3);
+}
+
+.primary-button:hover::before {
+    left: 100%;
+}
+
+.primary-button:active {
+    transform: translateY(-1px);
+}
+
+/* Secondary Button */
+.secondary-button {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--primary);
+    padding: 14px 28px;
+    border-radius: var(--border-radius-md);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.secondary-button:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    box-shadow: 0 5px 15px rgba(255, 182, 225, 0.3);
+    color: var(--accent-dark);
+}
+
+.secondary-button:active {
+    transform: translateY(-1px);
+}
+
+/* Connect Wallet Button (specifically styled) */
+.connect-wallet {
+    background: var(--gradient-primary);
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--border-radius-md);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.connect-wallet::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.7s;
+}
+
+.connect-wallet:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(194, 163, 255, 0.3);
+}
+
+.connect-wallet:hover::before {
+    left: 100%;
+}
+
+.connect-wallet:active {
+    transform: translateY(-1px);
+}
+
+/* Submit Button (for forms) */
+.submit-button {
+    background: var(--gradient-accent);
+    color: #ffffff;
+    border: none;
+    padding: 0 25px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+
+.submit-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.7s;
+}
+
+.submit-button:hover {
+    box-shadow: 0 5px 15px rgba(255, 182, 225, 0.3);
+}
+
+.submit-button:hover::before {
+    left: 100%;
+}
+
+.submit-button:active {
+    transform: scale(0.98);
+}
+
+/* Button Sizes */
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+}
+
+.btn-lg {
+    padding: 16px 32px;
+    font-size: 1.1rem;
+}
+
+/* Button Groups */
+.button-group {
+    display: flex;
+    gap: 15px;
+}
+
+.button-group-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Icon Button */
+.icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(194, 163, 255, 0.2);
+    color: var(--text);
+    transition: all 0.3s;
+}
+
+.icon-button:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* Disabled State */
+button:disabled,
+.button:disabled,
+.primary-button:disabled,
+.secondary-button:disabled,
+.submit-button:disabled,
+.connect-wallet:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+button:disabled::before,
+.button:disabled::before,
+.primary-button:disabled::before,
+.secondary-button:disabled::before,
+.submit-button:disabled::before,
+.connect-wallet:disabled::before {
+    display: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .primary-button,
+    .secondary-button {
+        padding: 12px 24px;
+    }
+    
+    .button-group {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .primary-button,
+    .secondary-button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}

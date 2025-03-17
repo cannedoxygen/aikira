@@ -1,0 +1,391 @@
+/* 
+* Aikira ($AIKIRA) - Tokenomics Section Styles
+* Base's #1 100% AI-Governed DAO
+*/
+
+/* Tokenomics Section */
+#tokenomics {
+    position: relative;
+    padding-top: 100px;
+    padding-bottom: 80px;
+}
+
+/* Token Metrics Cards */
+.token-metric-card {
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.token-metric-card .card-value {
+    font-size: 3.5rem;
+    margin-bottom: 5px;
+}
+
+/* Token Distribution Section */
+.distribution {
+    background-color: var(--card-bg);
+    padding: 40px;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid rgba(167, 216, 247, 0.3);
+    margin-bottom: 60px;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.distribution:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.distribution::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--gradient-primary);
+}
+
+.distribution h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+    color: var(--blue-dark);
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.distribution h3::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--blue-pastel);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Distribution Items */
+.distribution-item {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.distribution-item:last-child {
+    margin-bottom: 0;
+}
+
+.distribution-title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.distribution-title span:first-child {
+    position: relative;
+    padding-left: 20px;
+}
+
+.distribution-title span:first-child::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--primary);
+}
+
+/* Custom Color Indicators */
+.distribution-item:nth-child(1) .distribution-title span:first-child::before {
+    background: var(--primary);
+}
+
+.distribution-item:nth-child(2) .distribution-title span:first-child::before {
+    background: var(--blue-pastel);
+}
+
+.distribution-item:nth-child(3) .distribution-title span:first-child::before {
+    background: var(--accent);
+}
+
+.distribution-item:nth-child(4) .distribution-title span:first-child::before {
+    background: var(--neon-green);
+}
+
+.distribution-item:nth-child(5) .distribution-title span:first-child::before {
+    background: var(--neon-blue);
+}
+
+/* Distribution Progress Bars */
+.distribution-item:nth-child(1) .progress-fill {
+    background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+}
+
+.distribution-item:nth-child(2) .progress-fill {
+    background: linear-gradient(90deg, var(--blue-pastel), var(--blue-dark));
+}
+
+.distribution-item:nth-child(3) .progress-fill {
+    background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+}
+
+.distribution-item:nth-child(4) .progress-fill {
+    background: linear-gradient(90deg, var(--neon-green), var(--primary));
+}
+
+.distribution-item:nth-child(5) .progress-fill {
+    background: linear-gradient(90deg, var(--neon-blue), var(--blue-pastel));
+}
+
+/* Token Chart Section */
+.token-chart-container {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius-lg);
+    padding: 30px;
+    margin-bottom: 60px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(167, 216, 247, 0.3);
+}
+
+.token-chart-container h3 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.pie-chart {
+    width: 280px;
+    height: 280px;
+    margin: 0 auto 30px;
+    position: relative;
+}
+
+.pie-segment {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(50% 50%, 100% 0, 100% 100%);
+    transform-origin: center;
+}
+
+.chart-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.legend-color {
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    margin-right: 8px;
+}
+
+/* Token Information Section */
+.token-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.token-info-item {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius-lg);
+    padding: 25px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(167, 216, 247, 0.3);
+    transition: all 0.3s;
+}
+
+.token-info-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--blue-pastel);
+}
+
+.token-info-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--blue-dark);
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.token-info-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--blue-pastel);
+    transition: width 0.3s;
+}
+
+.token-info-item:hover .token-info-title::after {
+    width: 60px;
+}
+
+.token-info-value {
+    font-family: var(--mono-font);
+    font-size: 1.2rem;
+    color: var(--text);
+    margin-bottom: 5px;
+}
+
+/* Staking Rewards Section */
+.staking-rewards {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius-lg);
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(167, 216, 247, 0.3);
+}
+
+.staking-rewards h3 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.rewards-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.rewards-table th,
+.rewards-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(167, 216, 247, 0.3);
+}
+
+.rewards-table th {
+    background-color: rgba(167, 216, 247, 0.1);
+    font-weight: 600;
+    color: var(--blue-dark);
+}
+
+.rewards-table tr:last-child td {
+    border-bottom: none;
+}
+
+.rewards-table tr:hover td {
+    background-color: rgba(167, 216, 247, 0.05);
+}
+
+/* Token Supply Schedule */
+.token-schedule {
+    margin-top: 60px;
+}
+
+.schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.schedule-item {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius-lg);
+    padding: 25px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(167, 216, 247, 0.3);
+    transition: all 0.3s;
+}
+
+.schedule-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.schedule-phase {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.schedule-date {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .token-chart-container {
+        padding: 20px;
+    }
+    
+    .pie-chart {
+        width: 220px;
+        height: 220px;
+    }
+}
+
+@media (max-width: 768px) {
+    .distribution {
+        padding: 30px;
+    }
+    
+    .token-chart-container {
+        margin-bottom: 40px;
+    }
+    
+    .token-info-item,
+    .schedule-item {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .distribution {
+        padding: 20px;
+    }
+    
+    .distribution h3 {
+        font-size: 1.5rem;
+    }
+    
+    .token-chart-container h3,
+    .staking-rewards h3 {
+        font-size: 1.4rem;
+    }
+    
+    .pie-chart {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .rewards-table th,
+    .rewards-table td {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+}

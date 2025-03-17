@@ -1,0 +1,437 @@
+/* 
+* Aikira ($AIKIRA) - Airdrop Section Styles
+* Base's #1 100% AI-Governed DAO
+*/
+
+/* Airdrop Section */
+#airdrop {
+    position: relative;
+    padding-top: 100px;
+    padding-bottom: 80px;
+}
+
+/* Airdrop List Container */
+.airdrop-list {
+    background-color: var(--card-bg);
+    padding: 40px;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid rgba(255, 182, 225, 0.3);
+    margin-bottom: 40px;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.airdrop-list:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(255, 182, 225, 0.2);
+}
+
+.airdrop-list::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--gradient-accent);
+}
+
+/* Airdrop Items */
+.airdrop-item {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 182, 225, 0.3);
+    position: relative;
+}
+
+.airdrop-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.airdrop-item h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: var(--accent-dark);
+    position: relative;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.airdrop-item h3::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s;
+}
+
+.airdrop-item:hover h3::after {
+    width: 50px;
+}
+
+/* Airdrop Progress Information */
+.airdrop-progress-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* Airdrop Token Amount */
+.token-amount {
+    font-weight: 600;
+    color: var(--accent);
+    background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Wallet Form */
+.wallet-form {
+    background-color: var(--card-bg);
+    padding: 40px;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid rgba(255, 182, 225, 0.3);
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.wallet-form:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(255, 182, 225, 0.2);
+}
+
+.wallet-form::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--gradient-accent);
+}
+
+.wallet-form h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--accent-dark);
+    position: relative;
+    display: inline-block;
+    padding-bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.wallet-form h3::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Input Group */
+.input-group {
+    display: flex;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.wallet-input {
+    flex: 1;
+    padding: 15px;
+    border: 1px solid rgba(255, 182, 225, 0.5);
+    background-color: rgba(255, 255, 255, 0.8);
+    color: var(--text);
+    font-family: var(--mono-font);
+    font-size: 1rem;
+    border-radius: 8px 0 0 8px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.wallet-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 10px rgba(255, 182, 225, 0.3);
+}
+
+.wallet-input.input-error {
+    border-color: var(--error);
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+
+/* Submit Button Specific Styling */
+.wallet-form .submit-button {
+    background: var(--gradient-accent);
+    padding: 0 25px;
+}
+
+.wallet-form .submit-button:hover {
+    box-shadow: 0 5px 15px rgba(255, 182, 225, 0.3);
+}
+
+/* Error and Success Messages */
+.error-message, 
+.success-message {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: var(--border-radius-md);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+}
+
+.error-message {
+    color: #c62828;
+    background-color: rgba(255, 82, 82, 0.1);
+    border: 1px solid rgba(255, 82, 82, 0.3);
+}
+
+.success-message {
+    color: #2e7d32;
+    background-color: rgba(129, 199, 132, 0.1);
+    border: 1px solid rgba(129, 199, 132, 0.3);
+}
+
+/* Airdrop Terminal */
+.airdrop-terminal {
+    margin-top: 60px;
+}
+
+.airdrop-terminal .terminal-header {
+    border-bottom-color: rgba(255, 182, 225, 0.3);
+}
+
+.airdrop-terminal .terminal-title {
+    color: var(--accent-dark);
+}
+
+.airdrop-terminal .terminal-title-icon {
+    background-color: var(--accent);
+}
+
+/* Airdrop Feature Items */
+.airdrop-feature-grid {
+    margin-top: 60px;
+}
+
+.airdrop-feature-item {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius-lg);
+    padding: 25px;
+    border: 1px solid rgba(255, 182, 225, 0.3);
+    transition: all 0.3s;
+    box-shadow: var(--shadow-md);
+}
+
+.airdrop-feature-item:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.airdrop-feature-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 182, 225, 0.2);
+    border-radius: var(--border-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    color: var(--accent-dark);
+    transition: all 0.3s;
+}
+
+.airdrop-feature-item:hover .airdrop-feature-icon {
+    background: var(--accent);
+    color: white;
+    transform: rotate(10deg) scale(1.1);
+}
+
+.airdrop-feature-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--accent-dark);
+}
+
+/* Timeline for Airdrop Process */
+.airdrop-timeline {
+    margin: 60px 0;
+    counter-reset: step;
+}
+
+.airdrop-step {
+    position: relative;
+    margin-left: 60px;
+    padding-bottom: 30px;
+}
+
+.airdrop-step:last-child {
+    padding-bottom: 0;
+}
+
+.airdrop-step::before {
+    content: counter(step);
+    counter-increment: step;
+    position: absolute;
+    left: -60px;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    background: var(--gradient-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+}
+
+.airdrop-step::after {
+    content: "";
+    position: absolute;
+    left: -40px;
+    top: 40px;
+    bottom: 0;
+    width: 2px;
+    background: rgba(255, 182, 225, 0.3);
+}
+
+.airdrop-step:last-child::after {
+    display: none;
+}
+
+.airdrop-step-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--accent-dark);
+}
+
+/* Eligibility Criteria List */
+.eligibility-list {
+    margin: 30px 0;
+}
+
+.eligibility-item {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius-md);
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 3px solid var(--accent);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s;
+}
+
+.eligibility-item:hover {
+    transform: translateX(5px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .airdrop-list, 
+    .wallet-form {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .airdrop-list, 
+    .wallet-form {
+        padding: 25px;
+    }
+    
+    .wallet-form h3 {
+        font-size: 1.3rem;
+    }
+    
+    .wallet-input {
+        padding: 12px;
+    }
+    
+    .airdrop-step {
+        margin-left: 50px;
+    }
+    
+    .airdrop-step::before {
+        left: -50px;
+        width: 35px;
+        height: 35px;
+    }
+    
+    .airdrop-step::after {
+        left: -32.5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .airdrop-list, 
+    .wallet-form {
+        padding: 20px;
+    }
+    
+    .input-group {
+        flex-direction: column;
+    }
+    
+    .wallet-input {
+        border-radius: var(--border-radius-md);
+        margin-bottom: 10px;
+    }
+    
+    .wallet-form .submit-button {
+        border-radius: var(--border-radius-md);
+        padding: 12px;
+    }
+    
+    .airdrop-item h3 {
+        font-size: 1.2rem;
+    }
+    
+    .airdrop-step {
+        margin-left: 40px;
+    }
+    
+    .airdrop-step::before {
+        left: -40px;
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+    
+    .airdrop-step::after {
+        left: -25px;
+    }
+    
+    .airdrop-step-title {
+        font-size: 1.1rem;
+    }
+}

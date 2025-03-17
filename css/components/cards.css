@@ -1,0 +1,339 @@
+/* 
+* Aikira ($AIKIRA) - Card Styles
+* Base's #1 100% AI-Governed DAO
+*/
+
+/* Basic Card */
+.card {
+    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent */
+    border-radius: var(--border-radius-lg);
+    padding: 30px;
+    transition: all 0.4s;
+    border: 1px solid rgba(167, 216, 247, 0.5); /* Slightly more visible border */
+    box-shadow: var(--shadow-md); /* Enhanced shadow */
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(5px); /* Add blur effect for better readability */
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--blue-pastel);
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+/* Card Title */
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--blue-dark);
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.card-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--blue-pastel);
+}
+
+/* Card Value - for metrics */
+.card-value {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    background: var(--gradient-mix);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+/* Card Layouts */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+/* Feature Card */
+.feature-item {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius-lg);
+    padding: 30px;
+    border: 1px solid rgba(194, 163, 255, 0.3);
+    transition: all 0.4s;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.feature-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+    z-index: -1;
+}
+
+.feature-item::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--gradient-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+}
+
+.feature-item:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary);
+}
+
+.feature-item:hover::after {
+    transform: scaleX(1);
+}
+
+/* Feature Icon */
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(194, 163, 255, 0.2);
+    border-radius: var(--border-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: var(--primary-dark);
+    position: relative;
+    transition: all 0.3s;
+}
+
+.feature-item:hover .feature-icon {
+    background: var(--primary);
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Feature Title */
+.feature-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--primary-dark);
+    position: relative;
+    padding-bottom: 10px;
+    transition: color 0.3s;
+}
+
+.feature-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--primary);
+    transition: width 0.3s;
+}
+
+.feature-item:hover .feature-title {
+    color: var(--primary);
+}
+
+.feature-item:hover .feature-title::after {
+    width: 60px;
+}
+
+/* Distribution Card */
+.distribution {
+    background-color: var(--card-bg);
+    padding: 40px;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid rgba(167, 216, 247, 0.3);
+    margin-bottom: 60px;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.distribution:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.distribution::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--gradient-primary);
+}
+
+.distribution h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+    color: var(--blue-dark);
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.distribution h3::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--blue-pastel);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Airdrop List Card */
+.airdrop-list {
+    background-color: var(--card-bg);
+    padding: 40px;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid rgba(255, 182, 225, 0.3);
+    margin-bottom: 40px;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.airdrop-list:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(255, 182, 225, 0.2);
+}
+
+.airdrop-list::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--gradient-accent);
+}
+
+/* Roadmap Card */
+.roadmap-content {
+    width: 45%;
+    padding: 30px;
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid rgba(167, 216, 247, 0.3);
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 3;
+}
+
+.roadmap-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--gradient-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+}
+
+.roadmap-item:hover .roadmap-content {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--blue-pastel);
+}
+
+.roadmap-item:hover .roadmap-content::before {
+    transform: scaleX(1);
+}
+
+/* Card Glow Effect */
+.card-glow {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(167, 216, 247, 0.3) 0%, rgba(167, 216, 247, 0) 70%);
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .roadmap-content {
+        width: 80%;
+    }
+}
+
+@media (max-width: 768px) {
+    .card-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .distribution,
+    .airdrop-list {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 20px;
+    }
+    
+    .card-value {
+        font-size: 2.5rem;
+    }
+}

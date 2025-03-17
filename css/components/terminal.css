@@ -1,0 +1,211 @@
+/* 
+* Aikira ($AIKIRA) - Terminal UI Styles
+* Base's #1 100% AI-Governed DAO
+*/
+
+/* Terminal Container */
+.ai-terminal {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--blue-pastel);
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    text-align: left;
+    box-shadow: 0 0 20px rgba(167, 216, 247, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.ai-terminal::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--gradient-primary);
+}
+
+/* Terminal Width Variations */
+.ai-terminal.wide {
+    max-width: 800px;
+}
+
+.ai-terminal.narrow {
+    max-width: 400px;
+}
+
+/* Terminal Header */
+.terminal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(167, 216, 247, 0.5);
+}
+
+.terminal-title {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--accent-dark);
+    font-family: var(--mono-font);
+}
+
+.terminal-title-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    background-color: var(--accent);
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+.terminal-title-icon::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 6px;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+}
+
+.terminal-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.terminal-control {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.terminal-control.close {
+    background-color: #ff5f56;
+}
+
+.terminal-control.minimize {
+    background-color: #ffbd2e;
+}
+
+.terminal-control.maximize {
+    background-color: #27c93f;
+}
+
+/* Terminal Content */
+.terminal-content {
+    font-family: var(--mono-font);
+    font-size: 0.9rem;
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.terminal-line {
+    margin-bottom: 8px;
+    display: flex;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+}
+
+.terminal-prompt {
+    color: var(--accent-dark);
+    margin-right: 10px;
+    opacity: 0;
+    animation: fadeIn 0.3s forwards;
+}
+
+.terminal-output {
+    flex: 1;
+    opacity: 0;
+    position: relative;
+    overflow: hidden;
+    width: 0; /* Start with zero width */
+}
+
+.terminal-output.typing {
+    animation: typewriter 2s steps(40, end) forwards;
+    opacity: 1;
+}
+
+/* Status Colors */
+.terminal-output .success {
+    color: var(--success);
+}
+
+.terminal-output .error {
+    color: var(--error);
+}
+
+/* Terminal Cursor */
+.terminal-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background-color: var(--accent);
+    animation: blink 1s step-end infinite;
+    vertical-align: middle;
+    margin-left: 2px;
+}
+
+/* Terminal Themes */
+.ai-terminal.dark {
+    background-color: rgba(40, 42, 54, 0.8);
+    border-color: var(--primary-dark);
+}
+
+.ai-terminal.dark .terminal-title {
+    color: var(--accent);
+}
+
+.ai-terminal.dark .terminal-content {
+    color: #f8f8f2;
+}
+
+.ai-terminal.dark .terminal-prompt {
+    color: var(--accent);
+}
+
+.ai-terminal.dark .terminal-header {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Manifesto Terminal Special Styling */
+.manifesto-terminal .terminal-line {
+    margin-bottom: 15px;
+}
+
+.manifesto-terminal .terminal-prompt {
+    color: var(--primary);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .ai-terminal {
+        padding: 15px;
+        max-width: 100%;
+    }
+    
+    .terminal-content {
+        font-size: 0.8rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .terminal-cursor {
+        animation: none;
+    }
+    
+    .terminal-output.typing {
+        animation: none;
+        width: auto;
+        opacity: 1;
+    }
+}

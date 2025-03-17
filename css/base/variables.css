@@ -1,0 +1,66 @@
+/* 
+* Aikira ($AIKIRA) - CSS Variables
+* Base's #1 100% AI-Governed DAO
+*/
+
+:root {
+    /* Colors - Lo-fi anime pastel theme with AI touches */
+    --primary: #c2a3ff; /* Pastel lavender */
+    --primary-dark: #a98acf; /* Darker lavender */
+    --accent: #ffb6e1; /* Pastel pink */
+    --accent-dark: #f598cc; /* Darker pink */
+    --blue-pastel: #a7d8f7; /* Pastel blue */
+    --blue-dark: #8bbadc; /* Darker blue */
+    --neon-green: #a6ffb5; /* Neon green for circuit effects */
+    --neon-blue: #7ee2ff; /* Neon blue for AI effects */
+    --background: #f5f0ff; /* Soft lavender background */
+    --background-secondary: #f0e6ff; /* Slightly darker background */
+    --text: #6c5b7b; /* Soft purple text */
+    --text-secondary: #8a7a99; /* Lighter text */
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(90deg, #c2a3ff, #a7d8f7); /* Lavender to blue */
+    --gradient-accent: linear-gradient(90deg, #ffb6e1, #f598cc); /* Pink gradient */
+    --gradient-mix: linear-gradient(90deg, #c2a3ff, #ffb6e1); /* Lavender to pink */
+    --gradient-neon: linear-gradient(90deg, #a6ffb5, #7ee2ff); /* Green to blue neon */
+    
+    /* Functional Colors */
+    --success: #b5ecd7; /* Pastel mint */
+    --error: #ffb6b9; /* Pastel coral */
+    --card-bg: rgba(255, 255, 255, 0.7);
+    
+    /* Typography */
+    --body-font: 'Poppins', sans-serif;
+    --heading-font: 'Inter', sans-serif;
+    --mono-font: 'Space Mono', monospace;
+    
+    /* Spacing */
+    --spacing-xs: 5px;
+    --spacing-sm: 10px;
+    --spacing-md: 20px;
+    --spacing-lg: 40px;
+    --spacing-xl: 80px;
+    
+    /* Borders */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    --border-radius-xl: 20px;
+    --border-radius-circle: 50%;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 15px 30px rgba(0, 0, 0, 0.1);
+    --shadow-inset: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* Layout */
+    --container-width: 1200px;
+    --header-height: 80px;
+    --footer-padding: 60px;
+}

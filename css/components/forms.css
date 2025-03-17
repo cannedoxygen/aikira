@@ -1,0 +1,230 @@
+/* 
+* Aikira ($AIKIRA) - Form Styles
+* Base's #1 100% AI-Governed DAO
+*/
+
+/* Form Container */
+.wallet-form {
+    background-color: var(--card-bg);
+    padding: 40px;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid rgba(255, 182, 225, 0.3);
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.wallet-form:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.wallet-form::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--gradient-accent);
+}
+
+.wallet-form h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--accent-dark);
+    position: relative;
+    display: inline-block;
+    padding-bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.wallet-form h3::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Input Groups */
+.input-group {
+    display: flex;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.wallet-input {
+    flex: 1;
+    padding: 15px;
+    border: 1px solid rgba(255, 182, 225, 0.5);
+    background-color: rgba(255, 255, 255, 0.8);
+    color: var(--text);
+    font-family: var(--mono-font);
+    font-size: 1rem;
+    border-radius: 8px 0 0 8px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.wallet-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 10px rgba(255, 182, 225, 0.3);
+}
+
+/* Input Sizes */
+.input-sm {
+    padding: 8px;
+    font-size: 0.9rem;
+}
+
+.input-lg {
+    padding: 18px;
+    font-size: 1.1rem;
+}
+
+/* Form Layout Types */
+.form-stacked .input-group {
+    flex-direction: column;
+}
+
+.form-stacked label {
+    margin-bottom: 8px;
+}
+
+.form-stacked .submit-button {
+    border-radius: var(--border-radius-md);
+    margin-top: 10px;
+    width: 100%;
+}
+
+/* Checkbox & Radio Styles */
+.checkbox-group,
+.radio-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.checkbox-group input[type="checkbox"],
+.radio-group input[type="radio"] {
+    margin-right: 10px;
+}
+
+/* Form Validation Styling */
+.input-error {
+    border-color: var(--error) !important;
+}
+
+.error-message {
+    color: var(--error);
+    font-size: 0.85rem;
+    margin-top: 5px;
+    font-weight: 500;
+}
+
+.success-message {
+    color: var(--success);
+    font-size: 0.85rem;
+    margin-top: 5px;
+    font-weight: 500;
+}
+
+/* Form Floating Labels */
+.form-floating {
+    position: relative;
+}
+
+.form-floating label {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    color: var(--text-secondary);
+    pointer-events: none;
+    transition: all 0.3s;
+}
+
+.form-floating input:focus + label,
+.form-floating input:not(:placeholder-shown) + label {
+    top: -10px;
+    left: 10px;
+    font-size: 0.8rem;
+    background-color: white;
+    padding: 0 5px;
+}
+
+/* Form with Icons */
+.input-with-icon {
+    position: relative;
+}
+
+.input-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 15px;
+    color: var(--text-secondary);
+}
+
+.input-with-icon input {
+    padding-left: 40px;
+}
+
+/* Form Elements Focus Styling */
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 10px rgba(194, 163, 255, 0.3);
+}
+
+/* Disabled Form Elements */
+input:disabled,
+textarea:disabled,
+select:disabled,
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Responsive Form Adjustments */
+@media (max-width: 768px) {
+    .wallet-form {
+        padding: 30px;
+    }
+    
+    .wallet-input {
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .wallet-form {
+        padding: 20px;
+    }
+    
+    .input-group {
+        flex-direction: column;
+    }
+    
+    .wallet-input {
+        border-radius: var(--border-radius-md);
+        margin-bottom: 10px;
+    }
+    
+    .submit-button {
+        border-radius: var(--border-radius-md);
+        width: 100%;
+    }
+}

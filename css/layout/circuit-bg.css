@@ -1,0 +1,176 @@
+/* 
+* Aikira ($AIKIRA) - Circuit Background
+* Base's #1 100% AI-Governed DAO
+*/
+
+/* Circuit Board Background */
+.circuit-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background);
+    overflow: hidden;
+    z-index: 0;
+}
+
+/* Grid Lines */
+.grid-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(to right, rgba(194, 163, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(194, 163, 255, 0.1) 1px, transparent 1px);
+    background-size: 30px 30px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Background Glow */
+.bg-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(255, 182, 225, 0.3), transparent 70%),
+        radial-gradient(circle at 80% 70%, rgba(167, 216, 247, 0.3), transparent 70%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Circuit Lines */
+.circuit-line {
+    position: absolute;
+    background: linear-gradient(90deg, transparent, var(--neon-green), transparent);
+    height: 2px;
+    opacity: 0;
+    transition: opacity 1s ease;
+    z-index: 3;
+}
+
+/* Circuit Nodes */
+.circuit-node {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--neon-green);
+    box-shadow: 0 0 8px var(--neon-green);
+    opacity: 0;
+    transition: opacity 1s ease;
+    z-index: 3;
+}
+
+/* Circuit Paths with Pulse Effect */
+.circuit-path {
+    position: absolute;
+    height: 1px;
+    background: rgba(166, 255, 181, 0.2);
+    z-index: 3;
+}
+
+.circuit-pulse {
+    position: absolute;
+    width: 5px;
+    height: 3px;
+    top: -1px;
+    left: 0;
+    border-radius: 2px;
+    background: var(--neon-green);
+    box-shadow: 0 0 8px var(--neon-green);
+    opacity: 0.8;
+    transition: left 3s linear;
+}
+
+/* Particles Container */
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Simple Particle */
+.particle {
+    position: absolute;
+    background: var(--primary);
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: float 15s infinite;
+}
+
+/* Advanced Particle */
+.advanced-particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    transition: transform 0.3s ease-out;
+}
+
+/* Animation for particles with mouse interaction */
+@keyframes particle-float {
+    0% {
+        transform: translateY(0) translateX(0);
+    }
+    33% {
+        transform: translateY(-30px) translateX(20px);
+    }
+    66% {
+        transform: translateY(-10px) translateX(-15px);
+    }
+    100% {
+        transform: translateY(0) translateX(0);
+    }
+}
+
+/* Light/Dark Mode Transitions */
+.circuit-background.dark-mode {
+    background-color: #1a1a2e;
+}
+
+.circuit-background.dark-mode .grid-lines {
+    background-image: 
+        linear-gradient(to right, rgba(194, 163, 255, 0.15) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(194, 163, 255, 0.15) 1px, transparent 1px);
+}
+
+.circuit-background.dark-mode .bg-glow {
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(255, 182, 225, 0.1), transparent 70%),
+        radial-gradient(circle at 80% 70%, rgba(167, 216, 247, 0.1), transparent 70%);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .grid-lines {
+        background-size: 20px 20px;
+    }
+}
+
+/* Ensure compatibility with reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .circuit-pulse {
+        transition: none;
+    }
+    
+    .particle,
+    .advanced-particle {
+        animation: none;
+    }
+    
+    .circuit-background * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
