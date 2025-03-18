@@ -46,28 +46,18 @@ function processTerminal(terminal) {
             element.setAttribute('data-text', element.innerHTML);
         }
         
-        // Special handling for manifesto terminal
-        if (isManifesto) {
-            // For manifesto, just make text visible without animation for now
-            element.innerHTML = element.getAttribute('data-text');
-            element.style.opacity = '1';
-        } else {
-            // Reset element content for animated terminals
-            element.innerHTML = '';
-            element.style.opacity = '1';
-            
-            // Clear any existing animations
-            if (element._typingAnimation) {
-                clearTimeout(element._typingAnimation);
-            }
+        // Reset element content
+        element.innerHTML = '';
+        element.style.opacity = '1';
+        
+        // Clear any existing animations
+        if (element._typingAnimation) {
+            clearTimeout(element._typingAnimation);
         }
     });
     
-    // Only animate if this is not the manifesto terminal
-    if (!isManifesto) {
-        // Now start typing animation for first element
-        animateElement(outputElements, 0);
-    }
+    // Now start typing animation for first element
+    animateElement(outputElements, 0);
 }
 
 // Animate a single element
@@ -97,7 +87,6 @@ function animateElement(elements, index) {
         charIndex++;
         
         // To prevent word truncation, always show the full text with only part visible
-        // This ensures the container is always the right size
         const visibleText = text.substring(0, charIndex);
         element.innerHTML = visibleText + 
                           (charIndex < text.length ? '<span class="cursor">|</span>' : '');
@@ -133,6 +122,12 @@ function initTerminalCursors() {
         setTimeout(blinkCursor, Math.random() * 500);
     });
 }
+
+// Manual initialization function that can be called in HTML if needed
+window.initTerminals = function() {
+    startTypingAnimation();
+    initTerminalCursors();
+};
 
 // Export the function to be used in main.js
 export { startTypingAnimation, initTerminalCursors };

@@ -1,42 +1,66 @@
 /* 
-* Aikira ($AIKIRA) - Header Styles
+* Aikira ($AIKIRA) - Enhanced Interactive Header Styles
 * Base's #1 100% AI-Governed DAO
 */
 
-/* Header */
+/* Header Container */
 header {
     background-color: rgba(245, 240, 255, 0.85);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
     border-bottom: 1px solid rgba(194, 163, 255, 0.3);
-    transition: all 0.3s;
+    transition: all 0.4s;
+    box-shadow: 0 5px 20px rgba(194, 163, 255, 0.15);
 }
 
 header.scrolled {
     background-color: rgba(245, 240, 255, 0.95);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8px 25px rgba(194, 163, 255, 0.25);
+    border-bottom: 1px solid rgba(194, 163, 255, 0.5);
 }
 
 .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0;
+    padding: 15px 0;
+    position: relative;
 }
 
-/* Logo */
+/* Animated Logo */
 .logo {
     font-size: 1.8rem;
-    font-weight: 700;
+    font-weight: 800;
     color: var(--text);
     text-decoration: none;
     display: flex;
     align-items: center;
     position: relative;
+    transition: all 0.4s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.logo::before {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    transition: width 0.4s ease;
+}
+
+.logo:hover::before {
+    width: 70%;
 }
 
 .logo-highlight {
@@ -57,7 +81,7 @@ header.scrolled {
     background: var(--gradient-primary);
     transform: scaleX(0);
     transform-origin: right;
-    transition: transform 0.3s;
+    transition: transform 0.4s;
 }
 
 .logo:hover .logo-highlight::after {
@@ -65,16 +89,31 @@ header.scrolled {
     transform-origin: left;
 }
 
+/* Glowing Ticker */
 .ticker {
     background: var(--gradient-primary);
     color: #ffffff;
     padding: 4px 10px;
-    border-radius: 4px;
-    font-weight: 600;
-    font-size: 0.9rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.85rem;
     margin-left: 10px;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 4px 15px rgba(194, 163, 255, 0.5);
+    animation: ticker-pulse 3s infinite;
+}
+
+@keyframes ticker-pulse {
+    0% {
+        box-shadow: 0 4px 15px rgba(194, 163, 255, 0.4);
+    }
+    50% {
+        box-shadow: 0 4px 25px rgba(194, 163, 255, 0.7);
+    }
+    100% {
+        box-shadow: 0 4px 15px rgba(194, 163, 255, 0.4);
+    }
 }
 
 .ticker::before {
@@ -87,48 +126,67 @@ header.scrolled {
     background: linear-gradient(
         to bottom right, 
         rgba(255, 255, 255, 0) 0%, 
-        rgba(255, 255, 255, 0.1) 50%, 
+        rgba(255, 255, 255, 0.3) 50%, 
         rgba(255, 255, 255, 0) 100%
     );
     transform: rotate(45deg);
     animation: shine 3s infinite;
 }
 
-/* Navigation */
+@keyframes shine {
+    0% {
+        left: -150%;
+    }
+    100% {
+        left: 150%;
+    }
+}
+
+/* Enhanced Navigation */
 nav ul {
     display: flex;
     list-style: none;
+    gap: 40px;
 }
 
 nav ul li {
-    margin-left: 30px;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+nav ul li:hover {
+    transform: translateY(-3px);
 }
 
 nav ul li a {
     color: var(--text);
     text-decoration: none;
     font-size: 1rem;
-    font-weight: 500;
-    transition: color 0.3s;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s;
     position: relative;
-    padding-bottom: 5px;
+    padding: 5px 2px;
+    display: inline-block;
 }
 
+/* Gradient underline effect */
 nav ul li a::after {
     content: "";
     position: absolute;
-    bottom: 0;
+    bottom: -2px;
     left: 0;
     width: 100%;
     height: 2px;
     background: var(--gradient-primary);
     transform: scaleX(0);
     transform-origin: right;
-    transition: transform 0.3s;
+    transition: transform 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 nav ul li a:hover {
-    color: var(--primary-dark);
+    color: var(--primary);
+    transform: translateY(-1px);
 }
 
 nav ul li a:hover::after {
@@ -136,15 +194,115 @@ nav ul li a:hover::after {
     transform-origin: left;
 }
 
+/* Active link state */
 nav ul li a.active {
     color: var(--primary);
-    font-weight: 600;
+    font-weight: 700;
 }
 
 nav ul li a.active::after {
     transform: scaleX(1);
     transform-origin: left;
-    background: var(--accent);
+    height: 3px;
+    background: var(--gradient-mix);
+}
+
+/* Enhance focus states for accessibility */
+nav ul li a:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+/* Special hover effects */
+nav ul li {
+    position: relative;
+}
+
+nav ul li::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    width: 25px;
+    height: 25px;
+    background-color: rgba(194, 163, 255, 0.2);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+nav ul li:hover::before {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+}
+
+/* Glowing Connect Wallet Button */
+.connect-wallet {
+    background: var(--gradient-primary);
+    color: #ffffff;
+    border: none;
+    padding: 12px 26px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(194, 163, 255, 0.4);
+    letter-spacing: 0.5px;
+    z-index: 1;
+}
+
+.connect-wallet::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.7s;
+    z-index: -1;
+}
+
+.connect-wallet::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 10%;
+    width: 80%;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--primary);
+    filter: blur(8px);
+    opacity: 0.35;
+    transition: opacity 0.4s ease;
+}
+
+.connect-wallet:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 10px 25px rgba(194, 163, 255, 0.6);
+}
+
+.connect-wallet:hover::before {
+    left: 100%;
+}
+
+.connect-wallet:hover::after {
+    opacity: 0.7;
+}
+
+.connect-wallet:active {
+    transform: translateY(-2px) scale(0.98);
+}
+
+/* Add subtle white text shadow to the connect wallet text */
+.connect-wallet {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
 /* Mobile navigation toggle */
@@ -155,6 +313,7 @@ nav ul li a.active::after {
     width: 30px;
     height: 21px;
     cursor: pointer;
+    transition: all 0.3s;
 }
 
 .nav-toggle span {
@@ -162,47 +321,52 @@ nav ul li a.active::after {
     height: 3px;
     width: 100%;
     border-radius: 10px;
-    background: var(--primary);
-}
-
-/* Connect wallet button */
-.connect-wallet {
     background: var(--gradient-primary);
-    color: #ffffff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
     transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
+    transform-origin: left center;
 }
 
-.connect-wallet::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.7s;
+.nav-toggle:hover span {
+    background: var(--gradient-mix);
 }
 
-.connect-wallet:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(194, 163, 255, 0.3);
+.nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(1px, -2px);
 }
 
-.connect-wallet:hover::before {
-    left: 100%;
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-10px);
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(1px, 2px);
+}
+
+/* Page load animation */
+@keyframes headerFadeIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+header {
+    animation: headerFadeIn 0.8s ease forwards;
 }
 
 /* Responsive Styles */
 @media (max-width: 992px) {
     nav ul li {
         margin-left: 20px;
+    }
+    
+    nav ul {
+        gap: 20px;
     }
 }
 
@@ -217,14 +381,16 @@ nav ul li a.active::after {
         left: 0;
         width: 100%;
         padding: 20px;
-        background-color: rgba(245, 240, 255, 0.95);
-        backdrop-filter: blur(10px);
+        background: rgba(245, 240, 255, 0.98);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
         border-bottom: 1px solid rgba(194, 163, 255, 0.3);
         transform: translateY(-100%);
         opacity: 0;
-        transition: all 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         visibility: hidden;
         z-index: 999;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     }
 
     nav.open {
@@ -236,12 +402,22 @@ nav ul li a.active::after {
     nav ul {
         flex-direction: column;
         width: 100%;
+        gap: 0;
     }
 
     nav ul li {
         margin: 0;
         padding: 15px 0;
         border-bottom: 1px solid rgba(194, 163, 255, 0.1);
+        transform: translateX(-20px);
+        opacity: 0;
+        transition: all 0.4s ease;
+        transition-delay: calc(0.05s * var(--item-index, 0));
+    }
+    
+    nav.open ul li {
+        transform: translateX(0);
+        opacity: 1;
     }
 
     nav ul li:last-child {
@@ -251,11 +427,16 @@ nav ul li a.active::after {
     .logo {
         font-size: 1.5rem;
     }
+    
+    .connect-wallet {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
 }
 
 @media (max-width: 480px) {
     .connect-wallet {
         padding: 8px 15px;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
 }

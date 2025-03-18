@@ -5,26 +5,19 @@
  * This is the main JS file that imports all modules
  */
 
-// Import Component Behaviors
-import './components/terminal.js';
-import './components/progress-bars.js';
-import './components/wallet-form.js';
-import './components/nav.js';
+// Import Component Behaviors - using named imports
+import { startTypingAnimation, initTerminalCursors } from './components/terminal.js';
 
-// Import Animations
-import './animations/particles.js';
-import './animations/circuit.js';
-import './animations/hover-effects.js';
-
-// Import Utilities
-import './utils/performance.js';
-import './utils/scroll.js';
-
-// Initialize all functionality when DOM is ready
+// Invoke terminal animation directly to ensure it runs
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Aikira ($AIKIRA) - JavaScript initialized');
     
-    // Initialize all modules
+    // Initialize terminals immediately
+    console.log('Initializing Terminals directly');
+    startTypingAnimation();
+    initTerminalCursors();
+    
+    // Initialize all other modules
     initializeAll();
     
     // Add specific fix for roadmap section
@@ -34,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
 // Main initialization function that calls all module initializers
 function initializeAll() {
     // Initialize Components
-    initializeTerminals();
     initializeProgressBars();
     initializeWalletForm();
     initializeNavigation();
@@ -50,14 +42,6 @@ function initializeAll() {
 }
 
 // Component initializers
-function initializeTerminals() {
-    console.log('Initializing Terminals');
-    // This will be implemented in components/terminal.js
-    if (typeof startTypingAnimation === 'function') {
-        startTypingAnimation();
-    }
-}
-
 function initializeProgressBars() {
     console.log('Initializing Progress Bars');
     // This will be implemented in components/progress-bars.js
@@ -207,6 +191,40 @@ function setupSmoothScrolling() {
                 });
             }
         });
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        function alignBottoms() {
+            const terminal = document.querySelector('.ai-terminal');
+            const mascot = document.querySelector('.mascot-container');
+            const heroLeft = document.querySelector('.hero-left');
+            const logoArea = document.querySelector('.hero-logo-area');
+            
+            if (terminal && mascot && heroLeft && logoArea && window.innerWidth > 768) {
+                // Get heights
+                const mascotHeight = mascot.offsetHeight;
+                const logoHeight = logoArea.offsetHeight;
+                const terminalHeight = terminal.offsetHeight;
+                
+                // Space needed between logo and terminal
+                const spacingNeeded = mascotHeight - logoHeight - terminalHeight;
+                
+                // Add margin if needed
+                if (spacingNeeded > 0) {
+                    terminal.style.marginTop = spacingNeeded + 'px';
+                } else {
+                    terminal.style.marginTop = '20px';
+                }
+            } else if (terminal) {
+                // Reset on mobile
+                terminal.style.marginTop = '20px';
+            }
+        }
+        
+        // Initial alignment
+        setTimeout(alignBottoms, 500);
+        
+        // Realign on resize
+        window.addEventListener('resize', alignBottoms);
     });
 }
 
