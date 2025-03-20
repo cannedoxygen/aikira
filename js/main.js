@@ -35,6 +35,7 @@ function initializeAll() {
     initializeParticles();
     initializeCircuitAnimations();
     initializeHoverEffects();
+    initializeGridAnimations(); // Add this line
     
     // Initialize Utilities
     initializePerformanceMonitoring();

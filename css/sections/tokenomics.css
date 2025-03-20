@@ -21,10 +21,10 @@
     margin-bottom: 5px;
 }
 
-/* Token Distribution Section */
+/* Token Distribution Section - Updated for side-by-side layout */
 .distribution {
     background-color: var(--card-bg);
-    padding: 40px;
+    padding: 30px;
     border-radius: var(--border-radius-lg);
     border: 1px solid rgba(167, 216, 247, 0.3);
     margin-bottom: 60px;
@@ -32,6 +32,9 @@
     transition: transform 0.3s, box-shadow 0.3s;
     position: relative;
     overflow: hidden;
+    width: 58%;
+    float: left;
+    margin-right: 2%;
 }
 
 .distribution:hover {
@@ -50,9 +53,9 @@
 }
 
 .distribution h3 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 700;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     text-align: center;
     color: var(--blue-dark);
     position: relative;
@@ -66,16 +69,30 @@
     position: absolute;
     bottom: -8px;
     left: 0;
-    width: 60px;
+    width: 50px;
     height: 3px;
     background: var(--blue-pastel);
     left: 50%;
     transform: translateX(-50%);
 }
 
+/* Terminal next to distribution */
+#tokenomics .ai-terminal {
+    width: 40%;
+    float: left;
+    margin-bottom: 60px;
+}
+
+/* Clear floats */
+#tokenomics .container:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 /* Distribution Items */
 .distribution-item {
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     position: relative;
 }
 
@@ -86,13 +103,14 @@
 .distribution-title {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-weight: 500;
+    font-size: 0.95rem;
 }
 
 .distribution-title span:first-child {
     position: relative;
-    padding-left: 20px;
+    padding-left: 18px;
 }
 
 .distribution-title span:first-child::before {
@@ -101,8 +119,8 @@
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background: var(--primary);
 }
@@ -129,6 +147,11 @@
 }
 
 /* Distribution Progress Bars */
+.distribution-item .progress-bar {
+    height: 8px;
+    margin-bottom: 5px;
+}
+
 .distribution-item:nth-child(1) .progress-fill {
     background: linear-gradient(90deg, var(--primary), var(--primary-dark));
 }
@@ -157,6 +180,7 @@
     margin-bottom: 60px;
     box-shadow: var(--shadow-md);
     border: 1px solid rgba(167, 216, 247, 0.3);
+    clear: both;
 }
 
 .token-chart-container h3 {
@@ -207,6 +231,7 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
     margin-bottom: 60px;
+    clear: both;
 }
 
 .token-info-item {
@@ -263,6 +288,7 @@
     margin-bottom: 40px;
     box-shadow: var(--shadow-md);
     border: 1px solid rgba(167, 216, 247, 0.3);
+    clear: both;
 }
 
 .staking-rewards h3 {
@@ -301,6 +327,7 @@
 /* Token Supply Schedule */
 .token-schedule {
     margin-top: 60px;
+    clear: both;
 }
 
 .schedule-grid {
@@ -339,6 +366,17 @@
 
 /* Responsive Adjustments */
 @media (max-width: 992px) {
+    .distribution,
+    #tokenomics .ai-terminal {
+        width: 100%;
+        float: none;
+        margin-right: 0;
+    }
+    
+    #tokenomics .ai-terminal {
+        margin-top: 0;
+    }
+    
     .token-chart-container {
         padding: 20px;
     }
@@ -351,7 +389,7 @@
 
 @media (max-width: 768px) {
     .distribution {
-        padding: 30px;
+        padding: 25px;
     }
     
     .token-chart-container {
@@ -370,12 +408,12 @@
     }
     
     .distribution h3 {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
     
     .token-chart-container h3,
     .staking-rewards h3 {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
     }
     
     .pie-chart {

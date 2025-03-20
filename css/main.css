@@ -27,9 +27,11 @@
 @import url('./components/forms.css');
 
 /* Page sections */
+/* Page sections */
 @import url('./sections/hero.css');
 @import url('./sections/tokenomics.css');
 @import url('./sections/concept.css');
+@import url('./sections/constitution.css'); 
 @import url('./sections/airdrop.css');
 @import url('./sections/roadmap.css');
 

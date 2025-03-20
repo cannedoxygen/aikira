@@ -20,7 +20,8 @@ const performanceSettings = {
         particles: true,
         circuitEffects: true,
         terminalAnimations: true,
-        hoverEffects: true
+        hoverEffects: true,
+        gridAnimations: true  // New line for grid animations
     },
     
     // Has performance been reduced?
@@ -104,6 +105,7 @@ function reduceAnimationComplexity(immediate = false) {
     // Disable the most demanding animations
     const particleSystem = performanceSettings.activeAnimations.particles;
     const circuitEffects = performanceSettings.activeAnimations.circuitEffects;
+    const gridEffects = performanceSettings.activeAnimations.gridAnimations; // New line
     
     // Disable particle system (most demanding)
     if (particleSystem && typeof window.pauseParticles === 'function') {
@@ -119,9 +121,31 @@ function reduceAnimationComplexity(immediate = false) {
         window.pauseCircuitAnimations();
     }
     
+    // Reduce grid animation complexity
+    if (gridEffects && typeof window.pauseGridAnimations === 'function') {
+        console.log("Reducing grid animation complexity");
+        performanceSettings.activeAnimations.gridAnimations = false;
+        window.pauseGridAnimations();
+    }
+    
     // Notify user if not immediate (immediate is silent as it happens on load)
     if (!immediate) {
         showPerformanceNotification();
+    }
+}
+
+// Pause animation for better performance
+function pauseParticles() {
+    activeParticleSystem = false;
+    console.log("Particle system paused for better performance");
+}
+
+// Resume animation
+function resumeParticles() {
+    if (!activeParticleSystem) {
+        activeParticleSystem = true;
+        console.log("Particle system resumed");
+        requestAnimationFrame(animateParticles);
     }
 }
 
@@ -268,6 +292,14 @@ window.pauseCircuitAnimations = function() {
     
     // The real implementation will override this once loaded
     performanceSettings.activeAnimations.circuitEffects = false;
+};
+
+// Add placeholder for pauseGridAnimations
+window.pauseGridAnimations = function() {
+    console.log("Placeholder pauseGridAnimations called before module loaded");
+    
+    // The real implementation will override this once loaded
+    performanceSettings.activeAnimations.gridAnimations = false;
 };
 
 // Expose performance settings to check from other modules
