@@ -22,13 +22,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Add specific fix for roadmap section
     ensureRoadmapVisible();
+    
+    // Add specific fix for constitution section
+    initializeConstitution();
 });
 
 // Main initialization function that calls all module initializers
 function initializeAll() {
     // Initialize Components
     initializeProgressBars();
-    initializeWalletForm();
     initializeNavigation();
     
     // Initialize Animations
@@ -51,14 +53,6 @@ function initializeProgressBars() {
     }
 }
 
-function initializeWalletForm() {
-    console.log('Initializing Wallet Form');
-    // This will be implemented in components/wallet-form.js
-    if (typeof setupWalletForm === 'function') {
-        setupWalletForm();
-    }
-}
-
 function initializeNavigation() {
     console.log('Initializing Navigation');
     // This will be implemented in components/nav.js
@@ -73,6 +67,7 @@ function initializeNavigation() {
     if (navToggle && nav) {
         navToggle.addEventListener('click', function() {
             nav.classList.toggle('open');
+            navToggle.classList.toggle('active');
         });
     }
 }
@@ -102,6 +97,27 @@ function initializeHoverEffects() {
     }
 }
 
+function initializeGridAnimations() {
+    console.log('Initializing Grid Animations');
+    // If the grid-animations.js file isn't properly loading, initialize directly
+    if (typeof window.aikiraPulseGrid === 'undefined') {
+        // Create a basic grid animation
+        const circuitBg = document.querySelector('.circuit-background');
+        const gridLines = document.querySelector('.grid-lines');
+        
+        if (circuitBg && gridLines) {
+            // Make sure grid is styled
+            gridLines.style.backgroundImage = `
+                linear-gradient(to right, rgba(194, 163, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(194, 163, 255, 0.1) 1px, transparent 1px)
+            `;
+            gridLines.style.backgroundSize = '30px 30px';
+        }
+    } else if (typeof window.aikiraPulseGrid.start === 'function') {
+        window.aikiraPulseGrid.start();
+    }
+}
+
 // Utility initializers
 function initializePerformanceMonitoring() {
     console.log('Initializing Performance Monitoring');
@@ -124,6 +140,28 @@ function initializeScrollEffects() {
     
     if (typeof handleHeaderScroll === 'function') {
         handleHeaderScroll();
+    }
+    
+    // Fallback for scroll top button if utils/scroll.js doesn't load
+    const scrollTopBtn = document.querySelector('.scroll-top');
+    if (scrollTopBtn) {
+        // Show button when scrolled down
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+        
+        // Scroll to top when clicked
+        scrollTopBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
     }
 }
 
@@ -167,6 +205,44 @@ function ensureRoadmapVisible() {
     }, 500);
 }
 
+// Initialize the Constitution section
+function initializeConstitution() {
+    setTimeout(function() {
+        console.log('Initializing Constitution section');
+        const constitutionSection = document.getElementById('constitution');
+        
+        if (constitutionSection) {
+            // Ensure section is visible
+            constitutionSection.style.display = 'block';
+            constitutionSection.style.visibility = 'visible';
+            constitutionSection.style.opacity = '1';
+            
+            // Make sure the terminal styling is applied
+            const terminal = constitutionSection.querySelector('.constitution-terminal');
+            if (terminal) {
+                terminal.style.backgroundColor = 'rgba(40, 42, 54, 0.9)';
+                terminal.style.color = '#f8f8f2';
+                terminal.style.boxShadow = '0 0 30px rgba(194, 163, 255, 0.5)';
+            }
+            
+            // Make commandment items visible with a staggered effect
+            const commandmentItems = document.querySelectorAll('.commandment-item');
+            commandmentItems.forEach((item, index) => {
+                // Set initial style
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(20px)';
+                item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                
+                // Animate in with delay
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, 150 * index);
+            });
+        }
+    }, 800);
+}
+
 // Setup smooth scrolling for anchor links
 function setupSmoothScrolling() {
     const anchorLinks = document.querySelectorAll('a[href^="#"]:not([href="#"])');
@@ -183,6 +259,10 @@ function setupSmoothScrolling() {
                 const nav = document.querySelector('nav');
                 if (nav && nav.classList.contains('open')) {
                     nav.classList.remove('open');
+                    const navToggle = document.querySelector('.nav-toggle');
+                    if (navToggle) {
+                        navToggle.classList.remove('active');
+                    }
                 }
                 
                 // Scroll to the target
@@ -193,41 +273,65 @@ function setupSmoothScrolling() {
             }
         });
     });
-    document.addEventListener('DOMContentLoaded', function() {
-        function alignBottoms() {
-            const terminal = document.querySelector('.ai-terminal');
-            const mascot = document.querySelector('.mascot-container');
-            const heroLeft = document.querySelector('.hero-left');
-            const logoArea = document.querySelector('.hero-logo-area');
-            
-            if (terminal && mascot && heroLeft && logoArea && window.innerWidth > 768) {
-                // Get heights
-                const mascotHeight = mascot.offsetHeight;
-                const logoHeight = logoArea.offsetHeight;
-                const terminalHeight = terminal.offsetHeight;
-                
-                // Space needed between logo and terminal
-                const spacingNeeded = mascotHeight - logoHeight - terminalHeight;
-                
-                // Add margin if needed
-                if (spacingNeeded > 0) {
-                    terminal.style.marginTop = spacingNeeded + 'px';
-                } else {
-                    terminal.style.marginTop = '20px';
-                }
-            } else if (terminal) {
-                // Reset on mobile
-                terminal.style.marginTop = '20px';
-            }
-        }
-        
-        // Initial alignment
-        setTimeout(alignBottoms, 500);
-        
-        // Realign on resize
-        window.addEventListener('resize', alignBottoms);
+}
+
+// Add manual polyfill for document.addEventListener in case it's not defined
+if (!window.requestAnimationFrame) {
+    window.requestAnimationFrame = function(callback) {
+        return setTimeout(callback, 1000 / 60);
+    };
+}
+
+// Check if the DOM is already loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupSmoothScrolling);
+} else {
+    // DOM is already loaded, run setupSmoothScrolling immediately
+    setupSmoothScrolling();
+}
+
+// Additional Fallback for CSS Loading Issues
+// This ensures critical CSS properties are applied
+function ensureCriticalStyles() {
+    // Make sure the circuit background is styled correctly
+    const circuitBg = document.querySelector('.circuit-background');
+    if (circuitBg) {
+        circuitBg.style.position = 'fixed';
+        circuitBg.style.top = '0';
+        circuitBg.style.left = '0';
+        circuitBg.style.width = '100%';
+        circuitBg.style.height = '100%';
+        circuitBg.style.overflow = 'hidden';
+        circuitBg.style.zIndex = '0';
+    }
+    
+    // Make sure the grid lines are styled correctly
+    const gridLines = document.querySelector('.grid-lines');
+    if (gridLines) {
+        gridLines.style.position = 'absolute';
+        gridLines.style.top = '0';
+        gridLines.style.left = '0';
+        gridLines.style.width = '100%';
+        gridLines.style.height = '100%';
+        gridLines.style.backgroundImage = `
+            linear-gradient(to right, rgba(194, 163, 255, 0.1) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(194, 163, 255, 0.1) 1px, transparent 1px)
+        `;
+        gridLines.style.backgroundSize = '30px 30px';
+        gridLines.style.pointerEvents = 'none';
+        gridLines.style.zIndex = '-1';
+    }
+    
+    // Ensure the container is styled correctly
+    const containers = document.querySelectorAll('.container');
+    containers.forEach(container => {
+        container.style.maxWidth = '1200px';
+        container.style.margin = '0 auto';
+        container.style.padding = '0 20px';
+        container.style.position = 'relative';
+        container.style.zIndex = '5';
     });
 }
 
-// Call the smooth scrolling setup
-setupSmoothScrolling();
+// Run critical style function
+document.addEventListener('DOMContentLoaded', ensureCriticalStyles);
