@@ -37,7 +37,7 @@ function initializeAll() {
     initializeParticles();
     initializeCircuitAnimations();
     initializeHoverEffects();
-    initializeGridAnimations(); // Add this line
+    initializeGridAnimations();
     
     // Initialize Utilities
     initializePerformanceMonitoring();
@@ -205,42 +205,196 @@ function ensureRoadmapVisible() {
     }, 500);
 }
 
-// Initialize the Constitution section
+// Enhanced Constitution Terminal initialization function
 function initializeConstitution() {
+    console.log('Initializing Constitution Terminal');
+    
+    // Wait a short time to ensure DOM is fully loaded
     setTimeout(function() {
-        console.log('Initializing Constitution section');
         const constitutionSection = document.getElementById('constitution');
         
         if (constitutionSection) {
-            // Ensure section is visible
-            constitutionSection.style.display = 'block';
-            constitutionSection.style.visibility = 'visible';
-            constitutionSection.style.opacity = '1';
+            console.log('Constitution section found - initializing terminal');
+            
+            // Ensure section is visible with important flags
+            constitutionSection.style.cssText = `
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                position: relative !important;
+                padding-top: 100px;
+                padding-bottom: 80px;
+            `;
             
             // Make sure the terminal styling is applied
             const terminal = constitutionSection.querySelector('.constitution-terminal');
             if (terminal) {
-                terminal.style.backgroundColor = 'rgba(40, 42, 54, 0.9)';
-                terminal.style.color = '#f8f8f2';
-                terminal.style.boxShadow = '0 0 30px rgba(194, 163, 255, 0.5)';
+                terminal.style.cssText = `
+                    background-color: rgba(22, 24, 33, 0.95) !important;
+                    color: #f8f8f2 !important;
+                    box-shadow: 0 0 30px rgba(194, 163, 255, 0.5) !important;
+                    max-width: 900px;
+                    min-height: 650px;
+                    margin: 0 auto 50px;
+                `;
+                
+                // Style the terminal elements
+                const terminalTitle = terminal.querySelector('.terminal-title');
+                if (terminalTitle) {
+                    terminalTitle.style.color = '#c2a3ff !important';
+                }
+                
+                const terminalContent = terminal.querySelector('.terminal-content');
+                if (terminalContent) {
+                    terminalContent.style.cssText = `
+                        color: #f8f8f2 !important;
+                        padding: 20px 25px !important;
+                        height: auto !important;
+                        min-height: 580px !important;
+                        max-height: none !important;
+                        overflow: auto;
+                    `;
+                }
+                
+                const terminalOutputs = terminal.querySelectorAll('.terminal-output');
+                if (terminalOutputs) {
+                    terminalOutputs.forEach(output => {
+                        output.style.cssText = `
+                            color: #f8f8f2 !important;
+                            font-family: 'Space Mono', monospace;
+                            display: inline-block;
+                            line-height: 1.6 !important;
+                            margin-bottom: 8px !important;
+                        `;
+                        
+                        // Make strong elements a different color
+                        const strongElements = output.querySelectorAll('strong');
+                        if (strongElements) {
+                            strongElements.forEach(strong => {
+                                strong.style.color = '#c2a3ff !important';
+                            });
+                        }
+                    });
+                }
+                
+                const terminalPrompts = terminal.querySelectorAll('.terminal-prompt');
+                if (terminalPrompts) {
+                    terminalPrompts.forEach(prompt => {
+                        prompt.style.cssText = `
+                            color: #a6ffb5 !important;
+                            font-weight: bold;
+                            min-width: 35px;
+                            display: inline-block;
+                        `;
+                    });
+                }
+                
+                const terminalTitleIcon = terminal.querySelector('.terminal-title-icon');
+                if (terminalTitleIcon) {
+                    terminalTitleIcon.style.backgroundColor = '#a6ffb5 !important';
+                }
+                
+                // Ensure terminal animation works with clean typing effect
+                animateConstitutionTerminal(terminal);
             }
             
-            // Make commandment items visible with a staggered effect
-            const commandmentItems = document.querySelectorAll('.commandment-item');
-            commandmentItems.forEach((item, index) => {
-                // Set initial style
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(20px)';
-                item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                
-                // Animate in with delay
-                setTimeout(() => {
-                    item.style.opacity = '1';
-                    item.style.transform = 'translateY(0)';
-                }, 150 * index);
-            });
+            console.log('Constitution terminal initialization complete');
+        } else {
+            console.error('Constitution section not found in the DOM');
         }
     }, 800);
+}
+
+// Function to animate the constitution terminal with typing effect
+function animateConstitutionTerminal(terminal) {
+    const terminalLines = terminal.querySelectorAll('.terminal-line');
+    
+    // First clear all outputs
+    terminalLines.forEach(line => {
+        const output = line.querySelector('.terminal-output');
+        if (output) {
+            // Store original HTML in a data attribute
+            output.dataset.originalHtml = output.innerHTML;
+            output.innerHTML = '';
+        }
+    });
+    
+    // Remove any CSS animations that might interfere
+    terminalLines.forEach(line => {
+        line.style.animation = 'none';
+        line.style.opacity = '1';
+        line.style.transform = 'translateY(0)';
+    });
+    
+    // Function to type HTML content properly
+    function typeHtml(element, html, index, callback) {
+        if (index < html.length) {
+            // Check if we're starting an HTML tag
+            if (html[index] === '<') {
+                // Find the closing '>' of this tag
+                const closeIndex = html.indexOf('>', index);
+                if (closeIndex !== -1) {
+                    // Add the entire tag at once
+                    element.innerHTML += html.substring(index, closeIndex + 1);
+                    index = closeIndex + 1;
+                }
+            } else {
+                // Add one character
+                element.innerHTML += html[index];
+                index++;
+            }
+            
+            // Schedule next character
+            setTimeout(() => {
+                typeHtml(element, html, index, callback);
+            }, 10);
+        } else if (callback) {
+            callback();
+        }
+    }
+    
+    // Animate lines one after another
+    function animateLine(lineIndex) {
+        if (lineIndex < terminalLines.length) {
+            const line = terminalLines[lineIndex];
+            const output = line.querySelector('.terminal-output');
+            
+            if (output && output.dataset.originalHtml) {
+                // Start typing the content
+                typeHtml(output, output.dataset.originalHtml, 0, () => {
+                    // When done, start the next line after a delay
+                    if (lineIndex === terminalLines.length - 1) {
+                        // If it's the last line, add blinking cursor
+                        const cursor = document.createElement('span');
+                        cursor.className = 'terminal-cursor';
+                        output.appendChild(cursor);
+                    }
+                    
+                    // Different delay based on the type of line
+                    let delay = 100;
+                    
+                    // Commandment lines (4-13) get a shorter delay
+                    if (lineIndex >= 3 && lineIndex <= 12) {
+                        delay = 50;
+                    } else {
+                        delay = 300;
+                    }
+                    
+                    setTimeout(() => {
+                        animateLine(lineIndex + 1);
+                    }, delay);
+                });
+            } else {
+                // If no output, move to next line
+                animateLine(lineIndex + 1);
+            }
+        }
+    }
+    
+    // Start animation with first line after a short delay
+    setTimeout(() => {
+        animateLine(0);
+    }, 500);
 }
 
 // Setup smooth scrolling for anchor links
@@ -331,6 +485,17 @@ function ensureCriticalStyles() {
         container.style.position = 'relative';
         container.style.zIndex = '5';
     });
+    
+    // Ensure constitution section is visible
+    const constitutionSection = document.getElementById('constitution');
+    if (constitutionSection) {
+        constitutionSection.style.cssText = `
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            position: relative !important;
+        `;
+    }
 }
 
 // Run critical style function

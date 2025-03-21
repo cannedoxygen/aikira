@@ -1,301 +1,233 @@
-/* Additional inline styles to make the Constitution section display properly */
-<style>
-    /* Main Constitution Section styles */
-    #constitution {
-        position: relative;
-        padding-top: 100px;
-        padding-bottom: 80px;
-        background: linear-gradient(rgba(245, 240, 255, 0.8), rgba(245, 240, 255, 0.8));
-    }
+/* 
+* Aikira ($AIKIRA) - Constitution Section Styles
+* Base's #1 100% AI-Governed DAO
+* 
+* THIS FILE SHOULD BE SAVED AS: css/sections/constitution.css
+*/
 
-    /* Constitution Terminal Special Styling */
+/* Main Constitution Section styles */
+#constitution {
+    position: relative;
+    padding-top: 100px;
+    padding-bottom: 80px;
+    background: linear-gradient(rgba(245, 240, 255, 0.8), rgba(245, 240, 255, 0.8));
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Constitution Terminal Special Styling */
+.constitution-terminal {
+    max-width: 900px;
+    min-height: 650px; /* Increased height to fit all commandments */
+    margin: 0 auto 50px;
+    background-color: rgba(22, 24, 33, 0.95) !important; /* Darker background to match other terminals */
+    border: 1px solid var(--primary);
+    box-shadow: 0 0 30px rgba(194, 163, 255, 0.5) !important;
+}
+
+.constitution-terminal::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--gradient-neon);
+}
+
+.constitution-terminal .terminal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: rgba(30, 32, 40, 0.95);
+    border-bottom: 1px solid rgba(194, 163, 255, 0.3);
+}
+
+.constitution-terminal .terminal-title {
+    display: flex;
+    align-items: center;
+    color: var(--primary) !important;
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+}
+
+.constitution-terminal .terminal-title-icon {
+    width: 12px;
+    height: 12px;
+    background-color: var(--neon-green) !important;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.constitution-terminal .terminal-controls {
+    display: flex;
+    align-items: center;
+}
+
+.constitution-terminal .terminal-control {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-left: 8px;
+}
+
+.constitution-terminal .terminal-control.close {
+    background-color: #ff5f56;
+}
+
+.constitution-terminal .terminal-control.minimize {
+    background-color: #ffbd2e;
+}
+
+.constitution-terminal .terminal-control.maximize {
+    background-color: #27c93f;
+}
+
+.constitution-terminal .terminal-content {
+    color: #f8f8f2 !important;
+    padding: 20px 25px !important;
+    height: auto !important;
+    min-height: 580px !important;
+    max-height: none !important;
+    overflow: auto;
+}
+
+.constitution-terminal .terminal-line {
+    margin-bottom: 10px !important;
+    display: flex;
+}
+
+.constitution-terminal .terminal-prompt {
+    color: var(--neon-green) !important;
+    font-weight: bold;
+    min-width: 35px; /* Make sure roman numerals align properly */
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+}
+
+.constitution-terminal .terminal-output {
+    color: #f8f8f2 !important;
+    font-family: 'Space Mono', monospace;
+    display: inline-block;
+    line-height: 1.6 !important;
+    margin-bottom: 8px !important;
+}
+
+.constitution-terminal .terminal-output strong {
+    color: var(--primary) !important;
+    font-weight: bold;
+}
+
+/* Special styling for the commandment lines */
+.constitution-terminal .terminal-line:nth-child(n+4):nth-child(-n+13) {
+    padding: 8px 0;
+    border-bottom: 1px dotted rgba(255, 255, 255, 0.1);
+}
+
+/* Special styling for the first three lines and last line */
+.constitution-terminal .terminal-line:nth-child(-n+3),
+.constitution-terminal .terminal-line:nth-last-child(2),
+.constitution-terminal .terminal-line:last-child {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+/* Blinking cursor */
+.terminal-cursor {
+    display: inline-block;
+    width: 10px;
+    height: 18px;
+    background-color: var(--neon-green);
+    margin-left: 5px;
+    animation: blink 1s step-end infinite;
+    vertical-align: middle;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Animation for terminal lines appearing */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.constitution-terminal .terminal-line {
+    animation: fadeIn 0.3s ease forwards;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.constitution-terminal .terminal-line:nth-child(1) { animation-delay: 0.1s; }
+.constitution-terminal .terminal-line:nth-child(2) { animation-delay: 0.5s; }
+.constitution-terminal .terminal-line:nth-child(3) { animation-delay: 0.9s; }
+.constitution-terminal .terminal-line:nth-child(4) { animation-delay: 1.3s; }
+.constitution-terminal .terminal-line:nth-child(5) { animation-delay: 1.7s; }
+.constitution-terminal .terminal-line:nth-child(6) { animation-delay: 2.1s; }
+.constitution-terminal .terminal-line:nth-child(7) { animation-delay: 2.5s; }
+.constitution-terminal .terminal-line:nth-child(8) { animation-delay: 2.9s; }
+.constitution-terminal .terminal-line:nth-child(9) { animation-delay: 3.3s; }
+.constitution-terminal .terminal-line:nth-child(10) { animation-delay: 3.7s; }
+.constitution-terminal .terminal-line:nth-child(11) { animation-delay: 4.1s; }
+.constitution-terminal .terminal-line:nth-child(12) { animation-delay: 4.5s; }
+.constitution-terminal .terminal-line:nth-child(13) { animation-delay: 4.9s; }
+.constitution-terminal .terminal-line:nth-child(14) { animation-delay: 5.3s; }
+.constitution-terminal .terminal-line:nth-child(15) { animation-delay: 5.7s; }
+
+/* Ensure section title is styled correctly */
+#constitution .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 50px;
+    color: var(--text);
+}
+
+#constitution .section-title span {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
     .constitution-terminal {
-        max-width: 800px;
-        margin: 0 auto 50px;
-        background-color: rgba(40, 42, 54, 0.9);
-        border: 1px solid var(--primary);
-        box-shadow: 0 0 30px rgba(194, 163, 255, 0.5);
+        max-width: 100%;
+        min-height: 700px; /* Increased for mobile to fit content */
     }
-
-    .constitution-terminal::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        background: var(--gradient-neon);
-    }
-
-    .constitution-terminal .terminal-title {
-        color: var(--primary);
-    }
-
-    .constitution-terminal .terminal-title-icon {
-        background-color: var(--neon-green);
-    }
-
+    
     .constitution-terminal .terminal-content {
-        color: #f8f8f2;
+        padding: 15px !important;
     }
-
-    .constitution-terminal .terminal-prompt {
-        color: var(--neon-green);
-    }
-
+    
     .constitution-terminal .terminal-output {
-        color: #f8f8f2;
+        font-size: 14px !important;
     }
-
-    /* Constitution Container */
-    .constitution-container {
-        background-color: rgba(255, 255, 255, 0.9);
-        border-radius: var(--border-radius-lg);
-        padding: 40px;
-        box-shadow: 0 15px 35px rgba(194, 163, 255, 0.3);
-        position: relative;
-        overflow: hidden;
-        border: 1px solid rgba(194, 163, 255, 0.4);
-        backdrop-filter: blur(5px);
-        max-width: 900px;
-        margin: 0 auto;
+    
+    .constitution-terminal .terminal-prompt {
+        min-width: 30px;
     }
+}
 
-    /* Constitution Header */
-    .constitution-header {
-        text-align: center;
-        margin-bottom: 40px;
-        position: relative;
+@media (max-width: 480px) {
+    .constitution-terminal {
+        min-height: 780px; /* Further increased for small screens */
     }
-
-    .constitution-title {
-        font-size: 2.5rem;
-        font-weight: 700;
-        background: var(--gradient-primary);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 5px;
-        display: inline-block;
+    
+    .constitution-terminal .terminal-output {
+        font-size: 13px !important;
     }
-
-    .constitution-subtitle {
-        font-size: 1.2rem;
-        color: var(--accent-dark);
-        font-weight: 500;
-        letter-spacing: 1px;
+    
+    .constitution-terminal .terminal-prompt {
+        min-width: 25px;
     }
-
-    .constitution-header::after {
-        content: "";
-        position: absolute;
-        bottom: -20px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80px;
-        height: 3px;
-        background: var(--gradient-primary);
-        border-radius: 3px;
-    }
-
-    /* Commandments List */
-    .commandments-list {
-        display: flex;
-        flex-direction: column;
-        gap: 25px;
-        margin-bottom: 40px;
-        position: relative;
-        z-index: 1;
-    }
-
-    /* Commandment Item */
-    .commandment-item {
-        display: flex;
-        background-color: rgba(255, 255, 255, 0.8);
-        border-radius: var(--border-radius-md);
-        padding: 20px;
-        transition: all 0.3s;
-        position: relative;
-        overflow: hidden;
-        border: 1px solid rgba(194, 163, 255, 0.3);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-
-    .commandment-item:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba(194, 163, 255, 0.3);
-        border-color: var(--primary);
-    }
-
-    .commandment-item::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 3px;
-        height: 100%;
-        background: var(--gradient-primary);
-        transition: width 0.3s;
-    }
-
-    .commandment-item:hover::before {
-        width: 6px;
-    }
-
-    /* Commandment Number */
-    .commandment-number {
+    
+    #constitution .section-title {
         font-size: 2rem;
-        font-weight: 700;
-        width: 60px;
-        height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: var(--gradient-primary);
-        color: white;
-        border-radius: 50%;
-        margin-right: 20px;
-        flex-shrink: 0;
-        box-shadow: 0 5px 15px rgba(194, 163, 255, 0.3);
-        transition: all 0.3s;
     }
-
-    .commandment-item:hover .commandment-number {
-        transform: scale(1.1);
-        box-shadow: 0 8px 20px rgba(194, 163, 255, 0.5);
-    }
-
-    /* Commandment Content */
-    .commandment-content {
-        flex: 1;
-    }
-
-    .commandment-content h3 {
-        font-size: 1.3rem;
-        margin-bottom: 10px;
-        color: var(--primary-dark);
-        position: relative;
-        padding-bottom: 5px;
-    }
-
-    .commandment-content h3::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 50px;
-        height: 2px;
-        background: var(--accent);
-        transition: width 0.3s;
-    }
-
-    .commandment-item:hover .commandment-content h3::after {
-        width: 75px;
-    }
-
-    .commandment-content ul {
-        list-style: none;
-        margin-left: 0;
-        padding-left: 0;
-    }
-
-    .commandment-content ul li {
-        position: relative;
-        padding-left: 20px;
-        margin-bottom: 8px;
-        color: var(--text);
-        line-height: 1.4;
-    }
-
-    .commandment-content ul li::before {
-        content: "•";
-        position: absolute;
-        left: 0;
-        top: 0;
-        color: var(--accent);
-        font-weight: bold;
-    }
-
-    /* Emergency Provision */
-    .emergency-provision {
-        background: linear-gradient(to right, rgba(194, 163, 255, 0.1), rgba(255, 182, 225, 0.1));
-        border-radius: var(--border-radius-md);
-        padding: 20px;
-        border: 1px solid rgba(255, 182, 225, 0.4);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .provision-header {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-    }
-
-    .provision-icon {
-        font-size: 1.6rem;
-        margin-right: 15px;
-    }
-
-    .provision-header h3 {
-        font-size: 1.3rem;
-        color: var(--accent-dark);
-        margin: 0;
-    }
-
-    .emergency-provision p {
-        margin: 0;
-        padding-left: 44px;
-        color: var(--text);
-    }
-
-    /* Responsive Adjustments */
-    @media (max-width: 768px) {
-        .constitution-container {
-            padding: 30px;
-        }
-        
-        .constitution-title {
-            font-size: 2rem;
-        }
-        
-        .commandment-item {
-            flex-direction: column;
-        }
-        
-        .commandment-number {
-            margin-right: 0;
-            margin-bottom: 15px;
-        }
-        
-        .commandment-content h3 {
-            text-align: center;
-        }
-        
-        .commandment-content h3::after {
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .emergency-provision p {
-            padding-left: 0;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .constitution-container {
-            padding: 20px;
-        }
-        
-        .constitution-title {
-            font-size: 1.8rem;
-        }
-        
-        .commandment-content h3 {
-            font-size: 1.1rem;
-        }
-    }
-</style>
+}
