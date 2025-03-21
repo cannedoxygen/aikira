@@ -19,11 +19,10 @@
 @import url('./layout/footer.css');
 @import url('./layout/circuit-bg.css');
 
-/* Components */
+/* Components (except terminal) */
 @import url('./components/buttons.css');
 @import url('./components/cards.css');
 @import url('./components/progress-bars.css');
-@import url('./components/terminal.css');
 @import url('./components/forms.css');
 
 /* Page sections */
@@ -33,6 +32,9 @@
 @import url('./sections/constitution.css'); /* Ensure this is properly imported */
 @import url('./sections/airdrop.css');
 @import url('./sections/roadmap.css');
+
+/* Terminal CSS loaded last to ensure it overrides section-specific terminal styling */
+@import url('./components/terminal.css');
 
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Space+Mono&display=swap');

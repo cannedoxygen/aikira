@@ -108,8 +108,8 @@ function initializeGridAnimations() {
         if (circuitBg && gridLines) {
             // Make sure grid is styled
             gridLines.style.backgroundImage = `
-                linear-gradient(to right, rgba(194, 163, 255, 0.1) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(194, 163, 255, 0.1) 1px, transparent 1px)
+                linear-gradient(to right, rgba(194, 163, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(194, 163, 255, 0.05) 1px, transparent 1px)
             `;
             gridLines.style.backgroundSize = '30px 30px';
         }
@@ -229,10 +229,11 @@ function initializeConstitution() {
             // Make sure the terminal styling is applied
             const terminal = constitutionSection.querySelector('.constitution-terminal');
             if (terminal) {
+                // FIXED: Changed dark background to light background to match other terminals
                 terminal.style.cssText = `
-                    background-color: rgba(22, 24, 33, 0.95) !important;
-                    color: #f8f8f2 !important;
-                    box-shadow: 0 0 30px rgba(194, 163, 255, 0.5) !important;
+                    background-color: rgba(255, 255, 255, 0.8) !important;
+                    color: var(--text) !important;
+                    box-shadow: 0 0 20px rgba(167, 216, 247, 0.5) !important;
                     max-width: 900px;
                     min-height: 650px;
                     margin: 0 auto 50px;
@@ -241,13 +242,15 @@ function initializeConstitution() {
                 // Style the terminal elements
                 const terminalTitle = terminal.querySelector('.terminal-title');
                 if (terminalTitle) {
-                    terminalTitle.style.color = '#c2a3ff !important';
+                    // FIXED: Changed text color to match other terminals
+                    terminalTitle.style.color = 'var(--accent-dark) !important';
                 }
                 
                 const terminalContent = terminal.querySelector('.terminal-content');
                 if (terminalContent) {
+                    // FIXED: Changed text color to match other terminals
                     terminalContent.style.cssText = `
-                        color: #f8f8f2 !important;
+                        color: var(--text) !important;
                         padding: 20px 25px !important;
                         height: auto !important;
                         min-height: 580px !important;
@@ -259,19 +262,24 @@ function initializeConstitution() {
                 const terminalOutputs = terminal.querySelectorAll('.terminal-output');
                 if (terminalOutputs) {
                     terminalOutputs.forEach(output => {
+                        // FIXED: Changed text color to match other terminals
                         output.style.cssText = `
-                            color: #f8f8f2 !important;
+                            color: var(--text) !important;
                             font-family: 'Space Mono', monospace;
                             display: inline-block;
                             line-height: 1.6 !important;
                             margin-bottom: 8px !important;
+                            white-space: normal !important;
+                            word-wrap: break-word !important;
+                            overflow-wrap: break-word !important;
                         `;
                         
                         // Make strong elements a different color
                         const strongElements = output.querySelectorAll('strong');
                         if (strongElements) {
                             strongElements.forEach(strong => {
-                                strong.style.color = '#c2a3ff !important';
+                                // FIXED: Changed text color to match other terminals
+                                strong.style.color = 'var(--primary-dark) !important';
                             });
                         }
                     });
@@ -280,8 +288,9 @@ function initializeConstitution() {
                 const terminalPrompts = terminal.querySelectorAll('.terminal-prompt');
                 if (terminalPrompts) {
                     terminalPrompts.forEach(prompt => {
+                        // FIXED: Changed text color to match other terminals
                         prompt.style.cssText = `
-                            color: #a6ffb5 !important;
+                            color: var(--primary) !important;
                             font-weight: bold;
                             min-width: 35px;
                             display: inline-block;
@@ -291,7 +300,8 @@ function initializeConstitution() {
                 
                 const terminalTitleIcon = terminal.querySelector('.terminal-title-icon');
                 if (terminalTitleIcon) {
-                    terminalTitleIcon.style.backgroundColor = '#a6ffb5 !important';
+                    // FIXED: Changed background color to match other terminals
+                    terminalTitleIcon.style.backgroundColor = 'var(--primary) !important';
                 }
                 
                 // Ensure terminal animation works with clean typing effect

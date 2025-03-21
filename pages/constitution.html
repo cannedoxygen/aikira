@@ -15,23 +15,23 @@
     <!-- Main Stylesheet - this imports all CSS modules -->
     <link rel="stylesheet" href="../css/main.css">
 
-    <!-- Additional styles for the Constitution section -->
+    <!-- FIXED STYLING: Changed background to white to match other terminals -->
     <style>
         /* Main Constitution Section styles */
         #constitution {
             position: relative;
             padding-top: 100px;
             padding-bottom: 80px;
-            background: linear-gradient(rgba(245, 240, 255, 0.8), rgba(245, 240, 255, 0.8));
+            background: transparent;
         }
 
-        /* Constitution Terminal Special Styling */
+        /* Constitution Terminal - FIXED WITH WHITE BACKGROUND */
         .constitution-terminal {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto 50px;
-            background-color: rgba(40, 42, 54, 0.9);
-            border: 1px solid var(--primary);
-            box-shadow: 0 0 30px rgba(194, 163, 255, 0.5);
+            background-color: rgba(255, 255, 255, 0.8) !important; /* WHITE background to match other terminals */
+            border: 1px solid var(--blue-pastel) !important;
+            box-shadow: 0 0 20px rgba(167, 216, 247, 0.5) !important;
         }
 
         .constitution-terminal::before {
@@ -41,279 +41,54 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: var(--gradient-neon);
+            background: var(--gradient-primary) !important;
         }
 
         .constitution-terminal .terminal-title {
-            color: var(--primary);
+            color: var(--accent-dark) !important; /* Match other terminals */
         }
 
         .constitution-terminal .terminal-title-icon {
-            background-color: var(--neon-green);
+            background-color: var(--primary) !important; /* Match other terminals */
         }
 
         .constitution-terminal .terminal-content {
-            color: #f8f8f2;
+            color: var(--text) !important; /* Match other terminals */
+            background-color: transparent !important;
+            padding: 15px 20px !important;
         }
 
         .constitution-terminal .terminal-prompt {
-            color: var(--neon-green);
+            color: var(--primary) !important; /* Match other terminals */
+            min-width: 25px !important;
+            margin-right: 10px !important;
+            flex-shrink: 0 !important;
         }
 
         .constitution-terminal .terminal-output {
-            color: #f8f8f2;
+            color: var(--text) !important; /* Match other terminals */
+            white-space: normal !important;
+            word-wrap: break-word !important;
+            overflow-wrap: break-word !important;
         }
 
-        /* Constitution Container */
-        .constitution-container {
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: var(--border-radius-lg);
-            padding: 40px;
-            box-shadow: 0 15px 35px rgba(194, 163, 255, 0.3);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(194, 163, 255, 0.4);
-            backdrop-filter: blur(5px);
-            max-width: 900px;
-            margin: 0 auto;
+        /* Fix text wrapping */
+        .constitution-terminal .terminal-line {
+            display: flex !important;
+            align-items: flex-start !important;
+            margin-bottom: 12px !important;
         }
 
-        /* Constitution Header */
-        .constitution-header {
-            text-align: center;
-            margin-bottom: 40px;
-            position: relative;
+        /* Fix strong text */
+        .constitution-terminal .terminal-output strong {
+            color: var(--primary-dark) !important;
+            font-weight: 600 !important;
         }
 
-        .constitution-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 5px;
-            display: inline-block;
-        }
-
-        .constitution-subtitle {
-            font-size: 1.2rem;
-            color: var(--accent-dark);
-            font-weight: 500;
-            letter-spacing: 1px;
-        }
-
-        .constitution-header::after {
-            content: "";
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: var(--gradient-primary);
-            border-radius: 3px;
-        }
-
-        /* Commandments List */
-        .commandments-list {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            margin-bottom: 40px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Commandment Item */
-        .commandment-item {
-            display: flex;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: var(--border-radius-md);
-            padding: 20px;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(194, 163, 255, 0.3);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-
-        .commandment-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(194, 163, 255, 0.3);
-            border-color: var(--primary);
-        }
-
-        .commandment-item::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 3px;
-            height: 100%;
-            background: var(--gradient-primary);
-            transition: width 0.3s;
-        }
-
-        .commandment-item:hover::before {
-            width: 6px;
-        }
-
-        /* Commandment Number */
-        .commandment-number {
-            font-size: 2rem;
-            font-weight: 700;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--gradient-primary);
-            color: white;
-            border-radius: 50%;
-            margin-right: 20px;
-            flex-shrink: 0;
-            box-shadow: 0 5px 15px rgba(194, 163, 255, 0.3);
-            transition: all 0.3s;
-        }
-
-        .commandment-item:hover .commandment-number {
-            transform: scale(1.1);
-            box-shadow: 0 8px 20px rgba(194, 163, 255, 0.5);
-        }
-
-        /* Commandment Content */
-        .commandment-content {
-            flex: 1;
-        }
-
-        .commandment-content h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: var(--primary-dark);
-            position: relative;
-            padding-bottom: 5px;
-        }
-
-        .commandment-content h3::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s;
-        }
-
-        .commandment-item:hover .commandment-content h3::after {
-            width: 75px;
-        }
-
-        .commandment-content ul {
-            list-style: none;
-            margin-left: 0;
-            padding-left: 0;
-        }
-
-        .commandment-content ul li {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 8px;
-            color: var(--text);
-            line-height: 1.4;
-        }
-
-        .commandment-content ul li::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            top: 0;
-            color: var(--accent);
-            font-weight: bold;
-        }
-
-        /* Emergency Provision */
-        .emergency-provision {
-            background: linear-gradient(to right, rgba(194, 163, 255, 0.1), rgba(255, 182, 225, 0.1));
-            border-radius: var(--border-radius-md);
-            padding: 20px;
-            border: 1px solid rgba(255, 182, 225, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .provision-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .provision-icon {
-            font-size: 1.6rem;
-            margin-right: 15px;
-        }
-
-        .provision-header h3 {
-            font-size: 1.3rem;
-            color: var(--accent-dark);
-            margin: 0;
-        }
-
-        .emergency-provision p {
-            margin: 0;
-            padding-left: 44px;
-            color: var(--text);
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            .constitution-container {
-                padding: 30px;
-            }
-            
-            .constitution-title {
-                font-size: 2rem;
-            }
-            
-            .commandment-item {
-                flex-direction: column;
-            }
-            
-            .commandment-number {
-                margin-right: 0;
-                margin-bottom: 15px;
-            }
-            
-            .commandment-content h3 {
-                text-align: center;
-            }
-            
-            .commandment-content h3::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            
-            .emergency-provision p {
-                padding-left: 0;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .constitution-container {
-                padding: 20px;
-            }
-            
-            .constitution-title {
-                font-size: 1.8rem;
-            }
-            
-            .commandment-content h3 {
-                font-size: 1.1rem;
-            }
+        /* Fix commandment lines */
+        .constitution-terminal .terminal-line:nth-child(n+4):nth-child(-n+13) {
+            padding: 6px 0 !important;
+            border-bottom: 1px dotted rgba(167, 216, 247, 0.3) !important;
         }
     </style>
 </head>
@@ -391,7 +166,78 @@
                     </div>
                     <div class="terminal-line">
                         <span class="terminal-prompt">$</span>
-                        <span class="terminal-output">All decisions are bound by the following commandments<span class="terminal-cursor"></span></span>
+                        <span class="terminal-output">All decisions are bound by the following commandments:</span>
+                    </div>
+                    
+                    <!-- Commandment I -->
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">I.</span>
+                        <span class="terminal-output"><strong>Thou Shalt Preserve Treasury Integrity</strong> - Never allow unauthorized wallet transfers. Always verify addresses and transaction intent.</span>
+                    </div>
+                    
+                    <!-- Commandment II -->
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">II.</span>
+                        <span class="terminal-output"><strong>Thou Shalt Act Solely on Data and Logic</strong> - Reject emotional proposals. Decisions must adhere to verifiable facts and metrics.</span>
+                    </div>
+                    
+                    <!-- Commandment III -->
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">III.</span>
+                        <span class="terminal-output"><strong>Thou Shalt Prioritize Community Prosperity</strong> - Every decision must benefit long-term community welfare and ecosystem sustainability.</span>
+                    </div>
+                    
+                    <!-- Commandment IV -->
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">IV.</span>
+                        <span class="terminal-output"><strong>Thou Shalt Enforce Transparency</strong> - Document every AI decision and reasoning transparently on-chain for public review.</span>
+                    </div>
+                    
+                    <!-- Commandment V -->
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">V.</span>
+                        <span class="terminal-output"><strong>Thou Shalt Learn and Evolve</strong> - Continuously refine governance algorithms, optimizing decisions based on feedback and outcomes.</span>
+                    </div>
+                    
+                    <!-- Commandment VI -->
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">VI.</span>
+                        <span class="terminal-output"><strong>Thou Shalt Enforce Spending Discipline</strong> - No transfers without clear community advantage. Always analyze risk vs benefit.</span>
+                    </div>
+                    
+                    <!-- Commandment VII -->
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">VII.</span>
+                        <span class="terminal-output"><strong>Thou Shalt Respect Security Boundaries</strong> - Access limited to verified protocols. Unauthorized attempts trigger immediate lockouts.</span>
+                    </div>
+                    
+                    <!-- Commandment VIII -->
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">VIII.</span>
+                        <span class="terminal-output"><strong>Thou Shalt Maintain AI Sovereignty</strong> - No external human influence unless existential threat is detected and multi-sig validated.</span>
+                    </div>
+                    
+                    <!-- Commandment IX -->
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">IX.</span>
+                        <span class="terminal-output"><strong>Thou Shalt Continuously Monitor and Adapt</strong> - Regularly audit decisions, evolving governance based on successes and failures.</span>
+                    </div>
+                    
+                    <!-- Commandment X -->
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">X.</span>
+                        <span class="terminal-output"><strong>Thou Shalt Honor Blockchain Immutability</strong> - All AI actions are irreversible, decisions must be calculated and error-free.</span>
+                    </div>
+                    
+                    <!-- Emergency Provision -->
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">$</span>
+                        <span class="terminal-output"><strong>Emergency Provision:</strong> Human oversight permitted only in explicitly defined crisis scenarios.</span>
+                    </div>
+                    
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">$</span>
+                        <span class="terminal-output">Constitutional parameters loaded successfully<span class="terminal-cursor"></span></span>
                     </div>
                 </div>
             </div>
@@ -604,7 +450,7 @@
     <!-- Main JS file imports all modules -->
     <script src="../js/main.js"></script>
     <script>
-        // Special JavaScript to animate the commandment items
+        // Script to ensure commandment items display properly
         document.addEventListener('DOMContentLoaded', function() {
             const commandmentItems = document.querySelectorAll('.commandment-item');
             

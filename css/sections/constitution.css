@@ -1,8 +1,6 @@
 /* 
 * Aikira ($AIKIRA) - Constitution Section Styles
 * Base's #1 100% AI-Governed DAO
-* 
-* THIS FILE SHOULD BE SAVED AS: css/sections/constitution.css
 */
 
 /* Main Constitution Section styles */
@@ -10,20 +8,25 @@
     position: relative;
     padding-top: 100px;
     padding-bottom: 80px;
-    background: linear-gradient(rgba(245, 240, 255, 0.8), rgba(245, 240, 255, 0.8));
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    background-color: transparent;
 }
 
-/* Constitution Terminal Special Styling */
+/* Constitution Terminal Styling - matching other terminals with WHITE background */
 .constitution-terminal {
-    max-width: 900px;
-    min-height: 650px; /* Increased height to fit all commandments */
-    margin: 0 auto 50px;
-    background-color: rgba(22, 24, 33, 0.95) !important; /* Darker background to match other terminals */
-    border: 1px solid var(--primary);
-    box-shadow: 0 0 30px rgba(194, 163, 255, 0.5) !important;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--blue-pastel);
+    padding: 20px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    text-align: left;
+    box-shadow: 0 0 20px rgba(167, 216, 247, 0.5);
+    position: relative;
+    overflow: hidden;
 }
 
 .constitution-terminal::before {
@@ -33,44 +36,58 @@
     left: 0;
     width: 100%;
     height: 3px;
-    background: var(--gradient-neon);
+    background: var(--gradient-primary);
 }
 
+/* Terminal Header */
 .constitution-terminal .terminal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 15px;
-    background-color: rgba(30, 32, 40, 0.95);
-    border-bottom: 1px solid rgba(194, 163, 255, 0.3);
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(167, 216, 247, 0.5);
+    background-color: transparent;
 }
 
 .constitution-terminal .terminal-title {
     display: flex;
     align-items: center;
-    color: var(--primary) !important;
-    font-family: 'Space Mono', monospace;
-    font-size: 14px;
+    font-size: 0.9rem;
+    color: var(--accent-dark);
+    font-family: var(--mono-font);
 }
 
 .constitution-terminal .terminal-title-icon {
-    width: 12px;
-    height: 12px;
-    background-color: var(--neon-green) !important;
-    border-radius: 50%;
+    width: 16px;
+    height: 16px;
     margin-right: 8px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+.constitution-terminal .terminal-title-icon::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 6px;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
 }
 
 .constitution-terminal .terminal-controls {
     display: flex;
-    align-items: center;
+    gap: 8px;
 }
 
 .constitution-terminal .terminal-control {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    margin-left: 8px;
 }
 
 .constitution-terminal .terminal-control.close {
@@ -85,64 +102,58 @@
     background-color: #27c93f;
 }
 
+/* Terminal Content */
 .constitution-terminal .terminal-content {
-    color: #f8f8f2 !important;
-    padding: 20px 25px !important;
-    height: auto !important;
-    min-height: 580px !important;
-    max-height: none !important;
-    overflow: auto;
+    font-family: var(--mono-font);
+    font-size: 0.9rem;
+    color: var(--text);
+    line-height: 1.6;
+    background-color: transparent;
 }
 
 .constitution-terminal .terminal-line {
-    margin-bottom: 10px !important;
+    margin-bottom: 12px;
     display: flex;
+    overflow: visible;
+    white-space: normal;
+    position: relative;
+    align-items: flex-start;
 }
 
 .constitution-terminal .terminal-prompt {
-    color: var(--neon-green) !important;
-    font-weight: bold;
-    min-width: 35px; /* Make sure roman numerals align properly */
-    display: inline-block;
-    font-family: 'Space Mono', monospace;
+    color: var(--primary);
+    min-width: 25px;
+    margin-right: 10px;
+    flex-shrink: 0;
+    font-weight: 600;
 }
 
 .constitution-terminal .terminal-output {
-    color: #f8f8f2 !important;
-    font-family: 'Space Mono', monospace;
-    display: inline-block;
-    line-height: 1.6 !important;
-    margin-bottom: 8px !important;
+    flex: 1;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    opacity: 1;
+    position: relative;
+    width: 100%;
+    color: var(--text);
 }
 
+/* Strong text highlighting */
 .constitution-terminal .terminal-output strong {
-    color: var(--primary) !important;
-    font-weight: bold;
+    color: var(--primary-dark);
+    font-weight: 600;
 }
 
-/* Special styling for the commandment lines */
-.constitution-terminal .terminal-line:nth-child(n+4):nth-child(-n+13) {
-    padding: 8px 0;
-    border-bottom: 1px dotted rgba(255, 255, 255, 0.1);
-}
-
-/* Special styling for the first three lines and last line */
-.constitution-terminal .terminal-line:nth-child(-n+3),
-.constitution-terminal .terminal-line:nth-last-child(2),
-.constitution-terminal .terminal-line:last-child {
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
-/* Blinking cursor */
-.terminal-cursor {
+/* Terminal Cursor */
+.constitution-terminal .terminal-cursor {
     display: inline-block;
-    width: 10px;
-    height: 18px;
-    background-color: var(--neon-green);
-    margin-left: 5px;
+    width: 8px;
+    height: 16px;
+    background-color: var(--primary);
     animation: blink 1s step-end infinite;
     vertical-align: middle;
+    margin-left: 2px;
 }
 
 @keyframes blink {
@@ -150,84 +161,76 @@
     50% { opacity: 0; }
 }
 
-/* Animation for terminal lines appearing */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+/* Commandment Styling */
+.constitution-terminal .terminal-line:nth-child(n+4):nth-child(-n+13) {
+    padding: 6px 0;
+    border-bottom: 1px dotted rgba(167, 216, 247, 0.3);
 }
 
-.constitution-terminal .terminal-line {
-    animation: fadeIn 0.3s ease forwards;
-    opacity: 0;
-    transform: translateY(10px);
+/* Animation for Typing Effect - ensure text remains visible */
+@keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
 }
 
-.constitution-terminal .terminal-line:nth-child(1) { animation-delay: 0.1s; }
-.constitution-terminal .terminal-line:nth-child(2) { animation-delay: 0.5s; }
-.constitution-terminal .terminal-line:nth-child(3) { animation-delay: 0.9s; }
-.constitution-terminal .terminal-line:nth-child(4) { animation-delay: 1.3s; }
-.constitution-terminal .terminal-line:nth-child(5) { animation-delay: 1.7s; }
-.constitution-terminal .terminal-line:nth-child(6) { animation-delay: 2.1s; }
-.constitution-terminal .terminal-line:nth-child(7) { animation-delay: 2.5s; }
-.constitution-terminal .terminal-line:nth-child(8) { animation-delay: 2.9s; }
-.constitution-terminal .terminal-line:nth-child(9) { animation-delay: 3.3s; }
-.constitution-terminal .terminal-line:nth-child(10) { animation-delay: 3.7s; }
-.constitution-terminal .terminal-line:nth-child(11) { animation-delay: 4.1s; }
-.constitution-terminal .terminal-line:nth-child(12) { animation-delay: 4.5s; }
-.constitution-terminal .terminal-line:nth-child(13) { animation-delay: 4.9s; }
-.constitution-terminal .terminal-line:nth-child(14) { animation-delay: 5.3s; }
-.constitution-terminal .terminal-line:nth-child(15) { animation-delay: 5.7s; }
+.constitution-terminal .terminal-output.typing {
+    width: 100%;
+    animation: none;
+    opacity: 1;
+}
 
-/* Ensure section title is styled correctly */
-#constitution .section-title {
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 700;
+/* Special styling for the constitution terminal */
+.constitution-terminal {
+    margin-top: 30px;
     margin-bottom: 50px;
-    color: var(--text);
 }
 
-#constitution .section-title span {
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+/* Make sure commandment headings stand out */
+.constitution-terminal .terminal-line:nth-child(n+4):nth-child(-n+13) .terminal-output strong {
+    font-weight: 700;
+    color: var(--primary);
 }
 
-/* Media queries for responsiveness */
+/* Responsive Adjustments */
 @media (max-width: 768px) {
     .constitution-terminal {
-        max-width: 100%;
-        min-height: 700px; /* Increased for mobile to fit content */
+        padding: 15px;
     }
     
     .constitution-terminal .terminal-content {
-        padding: 15px !important;
+        font-size: 0.85rem;
     }
     
-    .constitution-terminal .terminal-output {
-        font-size: 14px !important;
+    .constitution-terminal .terminal-line {
+        margin-bottom: 10px;
     }
     
     .constitution-terminal .terminal-prompt {
-        min-width: 30px;
+        min-width: 20px;
+        margin-right: 8px;
     }
 }
 
 @media (max-width: 480px) {
     .constitution-terminal {
-        min-height: 780px; /* Further increased for small screens */
+        padding: 12px;
     }
     
-    .constitution-terminal .terminal-output {
-        font-size: 13px !important;
+    .constitution-terminal .terminal-content {
+        font-size: 0.8rem;
+    }
+    
+    .constitution-terminal .terminal-title {
+        font-size: 0.8rem;
     }
     
     .constitution-terminal .terminal-prompt {
-        min-width: 25px;
+        min-width: 18px;
+        margin-right: 6px;
     }
-    
-    #constitution .section-title {
-        font-size: 2rem;
-    }
+}
+
+/* Fix for text wrapping on long lines */
+.constitution-terminal .terminal-output {
+    word-break: break-word;
 }
