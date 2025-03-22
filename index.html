@@ -125,6 +125,59 @@
             }
         }
     </style>
+    
+    <!-- Terminal Text Wrapping Fix - ADDED NEW CODE HERE -->
+    <style>
+        /* Fix for terminal output text wrapping */
+        .terminal-content {
+            font-family: var(--mono-font);
+            font-size: 0.9rem;
+            color: var(--text);
+            line-height: 1.6;
+            overflow: auto;
+        }
+        
+        .terminal-line {
+            margin-bottom: 8px;
+            display: flex !important;
+            white-space: normal !important;
+            position: relative;
+            align-items: flex-start !important;
+        }
+        
+        .terminal-prompt {
+            color: var(--accent-dark);
+            margin-right: 10px !important;
+            flex-shrink: 0 !important;
+            flex-basis: auto !important;
+            white-space: nowrap !important;
+        }
+        
+        .terminal-output {
+            flex: 1 !important;
+            position: relative;
+            white-space: normal !important;
+            word-wrap: break-word !important;
+            overflow-wrap: break-word !important;
+            width: auto !important;
+            display: block !important;
+        }
+        
+        /* For manifesto terminal specifically */
+        .manifesto-terminal .terminal-line {
+            margin-bottom: 15px !important;
+        }
+        
+        .manifesto-terminal .terminal-prompt {
+            color: var(--primary) !important;
+            min-width: 25px !important;
+        }
+        
+        .wide-terminal {
+            max-width: 900px !important;
+            margin: 0 auto 50px !important;
+        }
+    </style>
 </head>
 <body>
     <!-- Circuit Board Background -->
@@ -762,7 +815,7 @@
             </div>
             
             <div class="footer-bottom">
-                <p>© 2025 Aikira ($AIKIRA) -  100% AI-Governed DAO</p>
+                <p>© 2025 Aikira ($AIKIRA) - 100% AI-Governed DAO</p>
                 <p>Launched on <a href="http://cliza.ai">Cliza.ai</a></p>
                 <p class="disclaimer">
                     Aikira ($AIKIRA) tokens have no intrinsic value and are not investments. The tokens may experience extreme volatility or complete loss of value. Users must conduct their own research before participating. Only use funds you're comfortable losing.
@@ -777,6 +830,35 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
         </svg>
     </a>
+    
+    <!-- JavaScript for terminal text wrapping fix - ADDED NEW CODE HERE -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fix terminal text wrapping
+            const terminalOutputs = document.querySelectorAll('.terminal-output');
+            terminalOutputs.forEach(function(output) {
+                output.style.whiteSpace = 'normal';
+                output.style.wordWrap = 'break-word';
+                output.style.overflowWrap = 'break-word';
+                output.style.width = 'auto';
+                output.style.display = 'block';
+                output.style.flex = '1';
+            });
+            
+            // Run again after a delay to ensure it applies after animations
+            setTimeout(function() {
+                const terminalOutputs = document.querySelectorAll('.terminal-output');
+                terminalOutputs.forEach(function(output) {
+                    output.style.whiteSpace = 'normal';
+                    output.style.wordWrap = 'break-word';
+                    output.style.overflowWrap = 'break-word';
+                    output.style.width = 'auto';
+                    output.style.display = 'block';
+                    output.style.flex = '1';
+                });
+            }, 1000);
+        });
+    </script>
     
     <!-- JavaScript Imports -->
     <!-- Ensure we're using type="module" for ES module imports -->

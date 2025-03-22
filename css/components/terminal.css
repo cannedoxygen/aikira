@@ -1,5 +1,5 @@
 /* 
-* Aikira ($AIKIRA) - Terminal UI Styles
+* Aikira ($AIKIRA) - Terminal Component Styles
 * Base's #1 100% AI-Governed DAO
 */
 
@@ -111,28 +111,36 @@
     margin-bottom: 8px;
     display: flex;
     overflow: hidden;
-    white-space: nowrap;
+    white-space: normal;
     position: relative;
+    align-items: flex-start;
 }
 
 .terminal-prompt {
     color: var(--accent-dark);
     margin-right: 10px;
-    opacity: 0;
-    animation: fadeIn 0.3s forwards;
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 
 .terminal-output {
     flex: 1;
-    opacity: 0;
     position: relative;
     overflow: hidden;
-    width: 0; /* Start with zero width */
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    width: auto;
+    display: block;
 }
 
+/* Terminal Output Typing Animation */
 .terminal-output.typing {
-    animation: typewriter 2s steps(40, end) forwards;
+    width: auto;
+    animation: none;
     opacity: 1;
+    white-space: normal;
+    word-wrap: break-word;
 }
 
 /* Status Colors */
@@ -155,28 +163,6 @@
     margin-left: 2px;
 }
 
-/* Terminal Themes */
-.ai-terminal.dark {
-    background-color: rgba(40, 42, 54, 0.8);
-    border-color: var(--primary-dark);
-}
-
-.ai-terminal.dark .terminal-title {
-    color: var(--accent);
-}
-
-.ai-terminal.dark .terminal-content {
-    color: #f8f8f2;
-}
-
-.ai-terminal.dark .terminal-prompt {
-    color: var(--accent);
-}
-
-.ai-terminal.dark .terminal-header {
-    border-bottom-color: rgba(255, 255, 255, 0.1);
-}
-
 /* Manifesto Terminal Special Styling */
 .manifesto-terminal .terminal-line {
     margin-bottom: 15px;
@@ -184,6 +170,77 @@
 
 .manifesto-terminal .terminal-prompt {
     color: var(--primary);
+    min-width: 25px;
+}
+
+.manifesto-terminal .terminal-output {
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Wide Terminal Styling */
+.wide-terminal {
+    max-width: 900px;
+    margin: 0 auto 50px;
+}
+
+.wide-terminal .terminal-content {
+    white-space: normal;
+}
+
+/* Constitution Terminal Styling */
+.constitution-terminal .terminal-output {
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.constitution-terminal .terminal-line:nth-child(n+4):nth-child(-n+13) {
+    padding: 6px 0;
+    border-bottom: 1px dotted rgba(167, 216, 247, 0.3);
+}
+
+.constitution-terminal .terminal-line:nth-child(n+4):nth-child(-n+13) .terminal-output strong {
+    font-weight: 700;
+    color: var(--primary);
+}
+
+/* Progress Animation Controls */
+.progress-bar.no-animation .progress-fill {
+    transition: none;
+}
+
+.progress-bar.slow-animation .progress-fill {
+    transition: width 2.5s ease-out;
+}
+
+.progress-bar.fast-animation .progress-fill {
+    transition: width 0.8s ease-out;
+}
+
+/* Progress Striped */
+.progress-striped .progress-fill {
+    background-image: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.15) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.15) 50%,
+        rgba(255, 255, 255, 0.15) 75%,
+        transparent 75%,
+        transparent
+    );
+    background-size: 40px 40px;
+}
+
+.progress-striped.animated .progress-fill {
+    animation: progress-bar-stripes 2s linear infinite;
+}
+
+@keyframes progress-bar-stripes {
+    from { background-position: 40px 0; }
+    to { background-position: 0 0; }
 }
 
 /* Responsive Adjustments */
@@ -195,6 +252,14 @@
     
     .terminal-content {
         font-size: 0.8rem;
+    }
+    
+    .terminal-prompt {
+        min-width: 20px;
+    }
+    
+    .terminal-line {
+        margin-bottom: 6px;
     }
 }
 
